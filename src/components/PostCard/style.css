@@ -3,7 +3,6 @@
   margin: 8px 0px;
   border-radius: 8px;
   padding: 16px;
-  cursor: pointer;
 }
 
 .PostCard__wrapper:hover {
@@ -30,9 +29,12 @@
   display: flex;
   justify-content: space-between;
 }
+.PostCard__created-by {
+  margin: 0;
+}
 
 .PostCard__user-name {
-  margin: 0;
+  font-weight: 600;
 }
 
 .PostCard__button-container {

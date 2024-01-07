@@ -3,28 +3,43 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  margin-left: 16px;
+
+  li:last-child {
+    div {
+      border-bottom: none;
+    }
+  }
 }
 
 .CommentList__container {
-  list-style-type: none;
-  padding-left: 0px;
-  padding: 8px;
+  flex: 1;
   margin-left: 8px;
-  overflow: auto;
+  overflow: hidden;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
 .CommentList__item-container {
-  border: 1px solid #d9d9d9;
-  margin-bottom: 8px;
-  border-radius: 8px;
+  margin-bottom: 1rem;
   padding: 16px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.CommentList__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 1rem);
 }
 
 .CommentList__name {
   text-align: left;
 }
 .CommentList__email {
-  text-align: right;
+  text-align: left;
   font-weight: bold;
   color: grey;
 }

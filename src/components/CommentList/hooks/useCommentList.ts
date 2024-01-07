@@ -1,7 +1,7 @@
 import { useFetchHelper } from "../../../shared/fetchHelper";
 import { CommentResponse } from "../../../shared/type";
 
-export const useCommentList = (postId: number) => {
+export const useCommentList = (postId: number | null) => {
   const {
     data: comments,
     loading,

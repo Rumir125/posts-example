@@ -36,7 +36,10 @@ function PostCard({
       </h3>
       <div className="PostCard__container">
         <div>
-          <p className="PostCard__user-name">Created by: {postData.userName}</p>
+          <p className="PostCard__created-by">
+            Created by:{" "}
+            <span className="PostCard__user-name">{postData.userName}</span>
+          </p>
         </div>
         <div className="PostCard__button-container">
           <button onClick={handleClickDetails}>Details</button>

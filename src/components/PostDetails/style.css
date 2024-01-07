@@ -20,6 +20,10 @@
   margin-top: 24px;
 }
 
+.PostDetails__title {
+  text-align: left;
+}
+
 .PostDetails__user-name {
   font-weight: 600;
 }

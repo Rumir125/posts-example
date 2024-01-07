@@ -26,7 +26,7 @@ function PostDetails() {
               Go Back
             </button>
           </div>
-          <h2>{post.title}</h2>
+          <h2 className="PostDetails__title">{post.title}</h2>
           <p>
             Created by:{" "}
             <span className="PostDetails__user-name"> {user?.name} </span>

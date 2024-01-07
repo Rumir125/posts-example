@@ -1,0 +1,9 @@
+.ListComponent__wrapper {
+  overflow: auto;
+  height: 100%;
+}
+
+.ListComponent__list-wrapper {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}

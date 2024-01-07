@@ -1,9 +1,8 @@
 import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
 import withLogger from "../../shared/hoc/withLogger";
-import { PostData } from "../../shared/type";
 import CommentList from "../CommentList";
-import LoadingScreen from "../LoadingScreen";
 import PostCard from "../PostCard";
+import ListComponent from "../shared/ListComponent";
 import { usePosts } from "./hooks/usePosts";
 import "./style.css";
 
@@ -16,10 +15,6 @@ function PostList() {
     setSearchText,
     loading,
   } = usePosts();
-
-  if (loading) {
-    return <LoadingScreen propsMessage={DEFAULT_PROPS_MESSAGE} />;
-  }
 
   return (
     <div className="PostList__wrapper">
@@ -34,32 +29,27 @@ function PostList() {
             placeholder="Search posts by user name..."
           />
         </div>
-        {!!posts.length ? (
-          <ul className="PostList__list-container">
-            {posts.map((postData: PostData) => (
-              <li key={postData.id}>
-                <PostCard
-                  postData={postData}
-                  setCurrentPostId={setCurrentPostId}
-                  propsMessage={DEFAULT_PROPS_MESSAGE}
-                  selected={postData.id === currentPostId}
-                />
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div className="PostList__list-empty">
-            <p>No posts found</p>
-          </div>
-        )}
+        <ListComponent
+          propsMessage={DEFAULT_PROPS_MESSAGE}
+          data={posts}
+          loadingData={loading}
+          itemKey="id"
+          noDataMessage="No posts found"
+          renderItem={(postData) => (
+            <PostCard
+              postData={postData}
+              setCurrentPostId={setCurrentPostId}
+              propsMessage={DEFAULT_PROPS_MESSAGE}
+              selected={postData.id === currentPostId}
+            />
+          )}
+        />
       </div>
       <div className="PostList__comments-wrapper">
-        {currentPostId && (
-          <CommentList
-            propsMessage={DEFAULT_PROPS_MESSAGE}
-            postId={currentPostId}
-          />
-        )}
+        <CommentList
+          propsMessage={DEFAULT_PROPS_MESSAGE}
+          postId={currentPostId}
+        />
       </div>
     </div>
   );
