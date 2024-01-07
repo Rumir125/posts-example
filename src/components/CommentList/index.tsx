@@ -1,3 +1,4 @@
+import "./style.css";
 import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
 import withLogger from "../../shared/hoc/withLogger";
 import LoadingScreen from "../LoadingScreen";
@@ -11,53 +12,15 @@ function CommentList({ postId }: { postId: number }) {
   }
 
   return (
-    <div
-      style={{
-        maxHeight: "100%",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="CommentList__wrapper">
       <h2>Comments</h2>
-      <ul
-        style={{
-          listStyleType: "none",
-          paddingLeft: "0px",
-          padding: "8px",
-          marginLeft: "8px",
-          overflow: "auto",
-        }}
-      >
+      <ul className="CommentList__container">
         {comments?.map((comment) => (
           <li key={comment.id}>
-            <div
-              style={{
-                border: "1px solid #d9d9d9",
-                marginBottom: "8px",
-                borderRadius: "8px",
-                padding: "16px",
-              }}
-            >
-              <h4 style={{ textAlign: "left" }}>{comment.name}</h4>
-              <p
-                style={{
-                  textAlign: "right",
-                  fontWeight: "bold",
-                  color: "grey",
-                }}
-              >
-                {comment.email}
-              </p>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "gray",
-                  textAlign: "justify",
-                }}
-              >
-                {comment.body}
-              </p>
+            <div className="CommentList__item-container">
+              <h4 className="CommentList__name">{comment.name}</h4>
+              <p className="CommentList__email">{comment.email}</p>
+              <p className="CommentList__body">{comment.body}</p>
             </div>
           </li>
         ))}

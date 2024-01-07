@@ -1,0 +1,42 @@
+.PostList__wrapper {
+  height: 100%;
+  display: flex;
+  margin: 0 24px;
+}
+
+.PostList__container {
+  flex: 3;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.PostList__input-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.PostList__search-input {
+  width: 100%;
+  max-width: 700px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.PostList__list-container {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  overflow: auto;
+}
+
+.PostList__list-empty {
+  display: flex;
+  justify-content: center;
+}
+
+.PostList__comments-wrapper {
+  flex: 2;
+  max-height: 100vh;
+  overflow: hidden;
+}

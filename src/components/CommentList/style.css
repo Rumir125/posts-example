@@ -1,0 +1,36 @@
+.CommentList__wrapper {
+  max-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentList__container {
+  list-style-type: none;
+  padding-left: 0px;
+  padding: 8px;
+  margin-left: 8px;
+  overflow: auto;
+}
+
+.CommentList__item-container {
+  border: 1px solid #d9d9d9;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.CommentList__name {
+  text-align: left;
+}
+.CommentList__email {
+  text-align: right;
+  font-weight: bold;
+  color: grey;
+}
+
+.CommentList__body {
+  font-size: 14px;
+  color: gray;
+  text-align: justify;
+}

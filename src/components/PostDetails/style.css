@@ -1,0 +1,25 @@
+.PostDetails__wrapper {
+  margin: 0 24px;
+}
+
+.PostDetails__container {
+  display: flex;
+}
+
+.PostDetails__content-container {
+  flex: 3;
+}
+
+.PostDetails__comments-container {
+  flex: 2;
+  max-height: 100vh;
+}
+
+.PostDetails__button-container {
+  display: flex;
+  margin-top: 24px;
+}
+
+.PostDetails__user-name {
+  font-weight: 600;
+}

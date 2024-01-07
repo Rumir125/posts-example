@@ -1,18 +1,8 @@
 import withLogger from "../../shared/hoc/withLogger";
+import "./style.css";
 
 function LoadingScreen() {
-  return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      Loading...
-    </div>
-  );
+  return <div className="LoadingScreen__container">Loading...</div>;
 }
 
 const LoggedLoadingScreen = withLogger(LoadingScreen);

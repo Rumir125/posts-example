@@ -1,8 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { usePostDetails } from "./hooks/usePostDetails";
-import LoadingScreen from "../LoadingScreen";
-import withLogger from "../../shared/hoc/withLogger";
 import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
+import withLogger from "../../shared/hoc/withLogger";
+import CommentList from "../CommentList";
+import LoadingScreen from "../LoadingScreen";
+import { usePostDetails } from "./hooks/usePostDetails";
+
+import "./style.css";
 
 function PostDetails() {
   const { id } = useParams();
@@ -15,16 +18,24 @@ function PostDetails() {
   }
 
   return (
-    <div style={{ marginTop: "24px" }}>
-      <header style={{ display: "flex" }}>
-        <button onClick={() => navigate("/posts", { replace: true })}>
-          Go Back
-        </button>
-      </header>
-      <div>
-        <h2>{post.title}</h2>
-        <p>Created by: {user?.name}</p>
-        <p>{post.body}</p>
+    <div className="PostDetails__wrapper">
+      <div className="PostDetails__container">
+        <div className="PostDetails__content-container">
+          <div className="PostDetails__button-container">
+            <button onClick={() => navigate("/posts", { replace: true })}>
+              Go Back
+            </button>
+          </div>
+          <h2>{post.title}</h2>
+          <p>
+            Created by:{" "}
+            <span className="PostDetails__user-name"> {user?.name} </span>
+          </p>
+          <p>{post.body}</p>
+        </div>
+        <div className="PostDetails__comments-container">
+          <CommentList postId={post.id} propsMessage={DEFAULT_PROPS_MESSAGE} />
+        </div>
       </div>
     </div>
   );

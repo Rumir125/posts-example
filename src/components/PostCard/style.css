@@ -1,7 +1,41 @@
-.post_card__wrapper {
+.PostCard__wrapper {
   border: 1px solid #d9d9d9;
   margin: 8px 0px;
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
+}
+
+.PostCard__wrapper:hover {
+  background-color: #f0f0f0;
+}
+
+.PostCard__wrapper__selected {
+  border-color: #646cff;
+  background-color: #f0f0f0;
+}
+
+.PostCard__title {
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.PostCard__title__selected {
+  color: #535bf2;
+}
+
+.PostCard__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.PostCard__user-name {
+  margin: 0;
+}
+
+.PostCard__button-container {
+  display: flex;
+  column-gap: 8px;
 }

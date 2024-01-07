@@ -10,26 +10,29 @@ import {
 } from "react-router-dom";
 import LoadingScreen from "./components/LoadingScreen";
 import { DEFAULT_PROPS_MESSAGE } from "./config/constants";
+import ErrorBoundary from "./shared/hoc/errorBoundary";
 
 function App() {
   return (
-    <Router>
+    <ErrorBoundary>
       <Suspense
         fallback={<LoadingScreen propsMessage={DEFAULT_PROPS_MESSAGE} />}
       >
-        <Routes>
-          <Route path="/" element={<Navigate to="/posts" />} />
-          <Route
-            path="/posts"
-            element={<PostList propsMessage={DEFAULT_PROPS_MESSAGE} />}
-          />
-          <Route
-            path="/post/:id"
-            element={<PostDetails propsMessage={DEFAULT_PROPS_MESSAGE} />}
-          />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Navigate to="/posts" />} />
+            <Route
+              path="/posts"
+              element={<PostList propsMessage={DEFAULT_PROPS_MESSAGE} />}
+            />
+            <Route
+              path="/post/:id"
+              element={<PostDetails propsMessage={DEFAULT_PROPS_MESSAGE} />}
+            />
+          </Routes>
+        </Router>
       </Suspense>
-    </Router>
+    </ErrorBoundary>
   );
 }
 
