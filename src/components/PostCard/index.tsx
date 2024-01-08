@@ -9,11 +9,13 @@ function PostCard({
   setCurrentPostId,
   styleOverrides,
   selected,
+  testId,
 }: {
   postData: PostData;
   setCurrentPostId: Dispatch<SetStateAction<number | null>>;
   styleOverrides?: CSSProperties;
   selected?: boolean;
+  testId?: string;
 }) {
   const { handleClickDetails, handleClickViewComments } = usePostCard(
     postData.id,
@@ -26,6 +28,7 @@ function PostCard({
         selected ? "PostCard__wrapper__selected" : ""
       }`}
       style={styleOverrides}
+      data-testid={testId}
     >
       <h3
         className={`PostCard__title ${

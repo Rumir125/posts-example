@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useFetchHelper } from "../../../shared/fetchHelper";
 import { PostData, UserData } from "../../../shared/type";
 
-export const usePosts = () => {
+const usePosts = () => {
   const [currentPostId, setCurrentPostId] = useState<number | null>(null);
   const [searchText, setSearchText] = useState<string>("");
 
@@ -34,3 +34,5 @@ export const usePosts = () => {
     setSearchText,
   };
 };
+
+export default usePosts;

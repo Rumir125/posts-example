@@ -1,25 +1,29 @@
 import { CSSProperties } from "react";
-import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
 import withLogger from "../../shared/hoc/withLogger";
 import ListComponent from "../shared/ListComponent";
-import { useCommentList } from "./hooks/useCommentList";
+import useCommentList from "./hooks/useCommentList";
 import "./style.css";
 
 function CommentList({
   postId,
   styleOverrides,
+  testId,
 }: {
   postId: number | null;
   styleOverrides?: CSSProperties;
+  testId?: string;
 }) {
   const { comments, loadingComments } = useCommentList(postId);
 
   return (
-    <div className="CommentList__wrapper" style={styleOverrides}>
+    <div
+      className="CommentList__wrapper"
+      style={styleOverrides}
+      data-testid={testId}
+    >
       <h2>Comments</h2>
       <div className="CommentList__container">
         <ListComponent
-          propsMessage={DEFAULT_PROPS_MESSAGE}
           itemKey="id"
           data={comments || []}
           loadingData={loadingComments}
@@ -31,7 +35,10 @@ function CommentList({
             </div>
           )}
           noDataComponent={
-            <div className="CommentList__empty">
+            <div
+              className="CommentList__empty"
+              data-testid={`${testId}-no-data`}
+            >
               <p style={{ textAlign: "center", width: "100%" }}>
                 {postId
                   ? "No comments"

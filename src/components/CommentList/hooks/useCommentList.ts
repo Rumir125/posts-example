@@ -1,7 +1,7 @@
 import { useFetchHelper } from "../../../shared/fetchHelper";
 import { CommentResponse } from "../../../shared/type";
 
-export const useCommentList = (postId: number | null) => {
+const useCommentList = (postId: number | null) => {
   const {
     data: comments,
     loading,
@@ -10,3 +10,5 @@ export const useCommentList = (postId: number | null) => {
 
   return { comments, loadingComments: loading, error };
 };
+
+export default useCommentList;

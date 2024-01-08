@@ -1,7 +1,7 @@
 import { useFetchHelper } from "../../../shared/fetchHelper";
 import { PostData, UserData } from "../../../shared/type";
 
-export const usePostDetails = (id: number) => {
+const usePostDetails = (id: number) => {
   const { data: post, loading: loadingPost } = useFetchHelper<PostData>(
     `/posts/${id}`
   );
@@ -10,3 +10,5 @@ export const usePostDetails = (id: number) => {
   );
   return { post, user, loading: loadingPost || loadingUser };
 };
+
+export default usePostDetails;

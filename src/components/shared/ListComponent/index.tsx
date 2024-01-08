@@ -1,4 +1,3 @@
-import { DEFAULT_PROPS_MESSAGE } from "../../../config/constants";
 import withLogger from "../../../shared/hoc/withLogger";
 import LoggedLoadingScreen from "../../LoadingScreen";
 import "./style.css";
@@ -25,7 +24,7 @@ function ListComponent({
   return (
     <div className={`ListComponent__wrapper ${className}`}>
       {loadingData ? (
-        <LoggedLoadingScreen propsMessage={DEFAULT_PROPS_MESSAGE} />
+        <LoggedLoadingScreen />
       ) : !!data.length ? (
         <ul className={`ListComponent__list-wrapper ${listWrapperClassName}`}>
           {data.map((item) => (

@@ -1,24 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
 import withLogger from "../../shared/hoc/withLogger";
 import CommentList from "../CommentList";
 import LoadingScreen from "../LoadingScreen";
-import { usePostDetails } from "./hooks/usePostDetails";
+import usePostDetails from "./hooks/usePostDetails";
 
 import "./style.css";
 
-function PostDetails() {
+function PostDetails({ testId }: { testId?: string }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const { post, user, loading } = usePostDetails(Number(id));
 
   if (!post || loading) {
-    return <LoadingScreen propsMessage={DEFAULT_PROPS_MESSAGE} />;
+    return <LoadingScreen />;
   }
 
   return (
-    <div className="PostDetails__wrapper">
+    <div className="PostDetails__wrapper" data-testid={testId}>
       <div className="PostDetails__container">
         <div className="PostDetails__content-container">
           <div className="PostDetails__button-container">
@@ -34,7 +33,7 @@ function PostDetails() {
           <p>{post.body}</p>
         </div>
         <div className="PostDetails__comments-container">
-          <CommentList postId={post.id} propsMessage={DEFAULT_PROPS_MESSAGE} />
+          <CommentList postId={post.id} testId={`${testId}-comment-list`} />
         </div>
       </div>
     </div>

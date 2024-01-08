@@ -1,12 +1,11 @@
-import { DEFAULT_PROPS_MESSAGE } from "../../config/constants";
 import withLogger from "../../shared/hoc/withLogger";
 import CommentList from "../CommentList";
 import PostCard from "../PostCard";
 import ListComponent from "../shared/ListComponent";
-import { usePosts } from "./hooks/usePosts";
+import usePosts from "./hooks/usePosts";
 import "./style.css";
 
-function PostList() {
+function PostList({ testId }: { testId?: string }) {
   const {
     posts,
     currentPostId,
@@ -17,7 +16,7 @@ function PostList() {
   } = usePosts();
 
   return (
-    <div className="PostList__wrapper">
+    <div className="PostList__wrapper" data-testid={testId}>
       <div className="PostList__container">
         <h1>List of posts</h1>
         <div className="PostList__input-wrapper">
@@ -30,7 +29,6 @@ function PostList() {
           />
         </div>
         <ListComponent
-          propsMessage={DEFAULT_PROPS_MESSAGE}
           data={posts}
           loadingData={loading}
           itemKey="id"
@@ -39,17 +37,14 @@ function PostList() {
             <PostCard
               postData={postData}
               setCurrentPostId={setCurrentPostId}
-              propsMessage={DEFAULT_PROPS_MESSAGE}
               selected={postData.id === currentPostId}
+              testId={`${testId}-post-card-${postData.id}`}
             />
           )}
         />
       </div>
       <div className="PostList__comments-wrapper">
-        <CommentList
-          propsMessage={DEFAULT_PROPS_MESSAGE}
-          postId={currentPostId}
-        />
+        <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />
       </div>
     </div>
   );
