@@ -2,13 +2,12 @@ import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import CommentList from "..";
 import useCommentList from "../hooks/useCommentList";
+import { testComments, testPostId } from "../../../__mocks__/mockData";
 
 jest.mock("../hooks/useCommentList");
 
 const testId = "comment-list";
 describe("CommentList", function () {
-  let testPostId = 1;
-
   beforeEach(() => {
     jest.clearAllMocks();
     console.log = jest.fn();
@@ -38,15 +37,7 @@ describe("CommentList", function () {
 
   it("should display comment list with one comment", async function () {
     (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [
-        {
-          postId: 1,
-          id: 1,
-          name: "comment",
-          email: "test@mail",
-          body: "test message",
-        },
-      ],
+      comments: testComments,
       loadingComments: false,
       error: null,
     });

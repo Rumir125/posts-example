@@ -1,7 +1,7 @@
 import withLogger from "../../shared/hoc/withLogger";
 import CommentList from "../CommentList";
 import PostCard from "../PostCard";
-import ListComponent from "../shared/ListComponent";
+import ListComponent from "../../ui-library/ListComponent";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
 

@@ -1,6 +1,17 @@
-import withLogger from "../../../shared/hoc/withLogger";
-import LoggedLoadingScreen from "../../LoadingScreen";
+import withLogger from "../../shared/hoc/withLogger";
+import LoggedLoadingScreen from "../../components/LoadingScreen";
 import "./style.css";
+
+interface ListComponentProps {
+  data: any[];
+  renderItem: (item: any) => JSX.Element;
+  itemKey: string;
+  noDataMessage?: string;
+  className?: string;
+  listWrapperClassName?: string;
+  noDataComponent?: JSX.Element;
+  loadingData?: boolean;
+}
 
 function ListComponent({
   data,
@@ -11,16 +22,7 @@ function ListComponent({
   listWrapperClassName = "",
   noDataComponent,
   loadingData,
-}: {
-  data: any[];
-  renderItem: (item: any) => JSX.Element;
-  itemKey: string;
-  noDataMessage?: string;
-  className?: string;
-  listWrapperClassName?: string;
-  noDataComponent?: JSX.Element;
-  loadingData?: boolean;
-}) {
+}: ListComponentProps) {
   return (
     <div className={`ListComponent__wrapper ${className}`}>
       {loadingData ? (

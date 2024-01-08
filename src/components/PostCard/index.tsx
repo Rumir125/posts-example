@@ -4,19 +4,21 @@ import { PostData } from "../../shared/type";
 import { usePostCard } from "./hooks/usePostCard";
 import "./style.css";
 
+interface PostCardProps {
+  postData: PostData;
+  setCurrentPostId: Dispatch<SetStateAction<number | null>>;
+  styleOverrides?: CSSProperties;
+  selected?: boolean;
+  testId?: string;
+}
+
 function PostCard({
   postData,
   setCurrentPostId,
   styleOverrides,
   selected,
   testId,
-}: {
-  postData: PostData;
-  setCurrentPostId: Dispatch<SetStateAction<number | null>>;
-  styleOverrides?: CSSProperties;
-  selected?: boolean;
-  testId?: string;
-}) {
+}: PostCardProps) {
   const { handleClickDetails, handleClickViewComments } = usePostCard(
     postData.id,
     setCurrentPostId
@@ -29,6 +31,7 @@ function PostCard({
       }`}
       style={styleOverrides}
       data-testid={testId}
+      onClick={handleClickDetails}
     >
       <h3
         className={`PostCard__title ${
@@ -45,7 +48,6 @@ function PostCard({
           </p>
         </div>
         <div className="PostCard__button-container">
-          <button onClick={handleClickDetails}>Details</button>
           <button onClick={handleClickViewComments}>Comments</button>
         </div>
       </div>

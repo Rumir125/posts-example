@@ -3,6 +3,7 @@
   margin: 8px 0px;
   border-radius: 8px;
   padding: 16px;
+  cursor: pointer;
 }
 
 .PostCard__wrapper:hover {

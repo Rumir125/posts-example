@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const usePostCard = (
@@ -11,7 +11,10 @@ export const usePostCard = (
     navigate(`/post/${id}`);
   };
 
-  const handleClickViewComments = async () => {
+  const handleClickViewComments = async (
+    event: SyntheticEvent<HTMLButtonElement>
+  ) => {
+    event.stopPropagation();
     setCurrentPostId(id);
   };
 

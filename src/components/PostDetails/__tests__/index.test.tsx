@@ -3,6 +3,7 @@ import { act } from "react-dom/test-utils";
 import useCommentList from "../../CommentList/hooks/useCommentList";
 import LoggedPostDetails from "..";
 import usePostDetails from "../hooks/usePostDetails";
+import { testComments, testPost, testUser } from "../../../__mocks__/mockData";
 
 jest.mock("../../CommentList/hooks/useCommentList");
 jest.mock("react-router-dom", () => {
@@ -26,26 +27,13 @@ describe("PostDetails", function () {
 
   it("should display Posts details with comment list", async function () {
     (usePostDetails as jest.Mock).mockReturnValueOnce({
-      post: {
-        id: 1,
-        userId: 1,
-        title: "title",
-        body: "example body text",
-        userName: "John Doe",
-      },
-      user: {
-        id: 1,
-        name: "John Doe",
-        userName: "john123",
-        email: "test@mail.com",
-      },
+      post: testPost,
+      user: testUser,
       loading: false,
     });
 
     (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [
-        { id: 1, title: "title", body: "body", userName: "user", userId: 1 },
-      ],
+      comments: testComments,
       loadingComments: false,
       error: null,
     });

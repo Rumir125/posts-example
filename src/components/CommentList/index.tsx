@@ -1,18 +1,16 @@
 import { CSSProperties } from "react";
 import withLogger from "../../shared/hoc/withLogger";
-import ListComponent from "../shared/ListComponent";
+import ListComponent from "../../ui-library/ListComponent";
 import useCommentList from "./hooks/useCommentList";
 import "./style.css";
 
-function CommentList({
-  postId,
-  styleOverrides,
-  testId,
-}: {
+interface CommentListProps {
   postId: number | null;
   styleOverrides?: CSSProperties;
   testId?: string;
-}) {
+}
+
+function CommentList({ postId, styleOverrides, testId }: CommentListProps) {
   const { comments, loadingComments } = useCommentList(postId);
 
   return (

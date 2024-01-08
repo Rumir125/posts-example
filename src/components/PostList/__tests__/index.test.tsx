@@ -3,6 +3,11 @@ import { act } from "react-dom/test-utils";
 import LoggedPostList from "..";
 import useCommentList from "../../CommentList/hooks/useCommentList";
 import usePosts from "../hooks/usePosts";
+import {
+  testComments,
+  testPostId,
+  testPosts,
+} from "../../../__mocks__/mockData";
 
 jest.mock("../hooks/usePosts");
 jest.mock("../../PostCard/hooks/usePostCard", () => {
@@ -26,9 +31,7 @@ describe("PostList", function () {
 
   it("should display Posts list with empty comment list", async function () {
     (usePosts as jest.Mock).mockReturnValueOnce({
-      posts: [
-        { id: 1, title: "title", body: "body", userName: "user", userId: 1 },
-      ],
+      posts: testPosts,
       currentPostId: null,
       setCurrentPostId: jest.fn(),
       searchText: "",
@@ -76,10 +79,8 @@ describe("PostList", function () {
 
   it("should display PostList with comment list", async function () {
     (usePosts as jest.Mock).mockReturnValueOnce({
-      posts: [
-        { id: 1, title: "title", body: "body", userName: "user", userId: 1 },
-      ],
-      currentPostId: 1,
+      posts: testPosts,
+      currentPostId: testPostId,
       setCurrentPostId: jest.fn(),
       searchText: "",
       setSearchText: () => {},
@@ -87,15 +88,7 @@ describe("PostList", function () {
     });
 
     (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [
-        {
-          postId: 1,
-          id: 1,
-          name: "comment",
-          email: "test@mail",
-          body: "test message",
-        },
-      ],
+      comments: testComments,
       loadingComments: false,
       error: null,
     });
