@@ -5,6 +5,7 @@ import LoadingScreen from "../LoadingScreen";
 import usePostDetails from "./hooks/usePostDetails";
 
 import "./style.css";
+import Button from "../../ui-library/Button";
 
 function PostDetails({ testId }: { testId?: string }) {
   const { id } = useParams();
@@ -21,9 +22,12 @@ function PostDetails({ testId }: { testId?: string }) {
       <div className="PostDetails__container">
         <div className="PostDetails__content-container">
           <div className="PostDetails__button-container">
-            <button onClick={() => navigate("/posts", { replace: true })}>
+            <Button
+              onClick={() => navigate("/posts", { replace: true })}
+              variant="secondary"
+            >
               Go Back
-            </button>
+            </Button>
           </div>
           <h2 className="PostDetails__title">{post.title}</h2>
           <p>
@@ -40,6 +44,4 @@ function PostDetails({ testId }: { testId?: string }) {
   );
 }
 
-const LoggedPostDetails = withLogger(PostDetails);
-
-export default LoggedPostDetails;
+export default withLogger(PostDetails);

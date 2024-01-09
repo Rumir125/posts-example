@@ -50,6 +50,4 @@ function PostList({ testId }: { testId?: string }) {
   );
 }
 
-const LoggedPostList = withLogger(PostList);
-
-export default LoggedPostList;
+export default withLogger(PostList);

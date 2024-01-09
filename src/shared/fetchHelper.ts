@@ -8,7 +8,10 @@ export function useFetchHelper<T>(relativeUrl: string) {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!relativeUrl) return;
+      if (!relativeUrl) {
+        setLoading(false);
+        return;
+      }
       try {
         setLoading(true);
         const res = await fetch(`${getAPIUrl()}${relativeUrl}`);

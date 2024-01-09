@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import useCommentList from "../../CommentList/hooks/useCommentList";
-import LoggedPostDetails from "..";
+import PostDetails from "..";
 import usePostDetails from "../hooks/usePostDetails";
 import { testComments, testPost, testUser } from "../../../__mocks__/mockData";
 
@@ -38,9 +38,7 @@ describe("PostDetails", function () {
       error: null,
     });
     act(() => {
-      render(
-        <LoggedPostDetails propsMessage="Hello component" testId={testId} />
-      );
+      render(<PostDetails propsMessage="Hello component" testId={testId} />);
     });
 
     expect(screen.getByText("John Doe")).toBeInTheDocument();

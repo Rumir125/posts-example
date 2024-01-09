@@ -50,6 +50,4 @@ function CommentList({ postId, styleOverrides, testId }: CommentListProps) {
   );
 }
 
-const LoggedCommentList = withLogger(CommentList);
-
-export default LoggedCommentList;
+export default withLogger(CommentList);

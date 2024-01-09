@@ -3,6 +3,7 @@ import withLogger from "../../shared/hoc/withLogger";
 import { PostData } from "../../shared/type";
 import { usePostCard } from "./hooks/usePostCard";
 import "./style.css";
+import Button from "../../ui-library/Button";
 
 interface PostCardProps {
   postData: PostData;
@@ -48,13 +49,14 @@ function PostCard({
           </p>
         </div>
         <div className="PostCard__button-container">
-          <button onClick={handleClickViewComments}>Comments</button>
+          {/* <button onClick={handleClickViewComments}>Comments</button> */}
+          <Button onClick={handleClickViewComments} variant="primary">
+            Comments
+          </Button>
         </div>
       </div>
     </div>
   );
 }
 
-const LoggedPostCard = withLogger(PostCard);
-
-export default LoggedPostCard;
+export default withLogger(PostCard);

@@ -1,5 +1,5 @@
 import withLogger from "../../shared/hoc/withLogger";
-import LoggedLoadingScreen from "../../components/LoadingScreen";
+import LoadingScreen from "../../components/LoadingScreen";
 import "./style.css";
 
 interface ListComponentProps {
@@ -26,7 +26,7 @@ function ListComponent({
   return (
     <div className={`ListComponent__wrapper ${className}`}>
       {loadingData ? (
-        <LoggedLoadingScreen />
+        <LoadingScreen />
       ) : !!data.length ? (
         <ul className={`ListComponent__list-wrapper ${listWrapperClassName}`}>
           {data.map((item) => (
@@ -44,6 +44,4 @@ function ListComponent({
   );
 }
 
-const LoggedListComponent = withLogger(ListComponent);
-
-export default LoggedListComponent;
+export default withLogger(ListComponent);

@@ -14,6 +14,4 @@ function LoadingScreen() {
   );
 }
 
-const LoggedLoadingScreen = withLogger(LoadingScreen);
-
-export default LoggedLoadingScreen;
+export default withLogger(LoadingScreen);

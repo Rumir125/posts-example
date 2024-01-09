@@ -53,7 +53,7 @@ and to start production build run:
 
 ## Testing
 
-- We are using Jest for testing purposes
+We are using Jest for testing purposes
 
 `npm run test` or `npm run test:watch`
 

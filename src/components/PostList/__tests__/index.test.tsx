@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import LoggedPostList from "..";
+import PostList from "..";
 import useCommentList from "../../CommentList/hooks/useCommentList";
 import usePosts from "../hooks/usePosts";
 import {
@@ -44,7 +44,7 @@ describe("PostList", function () {
       error: null,
     });
     act(() => {
-      render(<LoggedPostList propsMessage="Hello component" testId={testId} />);
+      render(<PostList propsMessage="Hello component" testId={testId} />);
     });
 
     expect(
@@ -68,7 +68,7 @@ describe("PostList", function () {
       error: null,
     });
     act(() => {
-      render(<LoggedPostList propsMessage="Hello component" testId={testId} />);
+      render(<PostList propsMessage="Hello component" testId={testId} />);
     });
 
     expect(
@@ -93,7 +93,7 @@ describe("PostList", function () {
       error: null,
     });
     act(() => {
-      render(<LoggedPostList propsMessage="Hello component" testId={testId} />);
+      render(<PostList propsMessage="Hello component" testId={testId} />);
     });
 
     expect(screen.getByTestId(`${testId}-post-card-1`)).toBeInTheDocument();
