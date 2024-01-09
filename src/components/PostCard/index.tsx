@@ -1,14 +1,13 @@
-import { CSSProperties, Dispatch, SetStateAction } from "react";
+import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import { PostData } from "../../shared/type";
+import Button from "../../ui-library/Button";
 import { usePostCard } from "./hooks/usePostCard";
 import "./style.css";
-import Button from "../../ui-library/Button";
 
-interface PostCardProps {
+interface PostCardProps extends HTMLAttributes<HTMLDivElement> {
   postData: PostData;
   setCurrentPostId: Dispatch<SetStateAction<number | null>>;
-  styleOverrides?: CSSProperties;
   selected?: boolean;
   testId?: string;
 }
@@ -16,9 +15,9 @@ interface PostCardProps {
 function PostCard({
   postData,
   setCurrentPostId,
-  styleOverrides,
   selected,
   testId,
+  ...props
 }: PostCardProps) {
   const { handleClickDetails, handleClickViewComments } = usePostCard(
     postData.id,
@@ -30,9 +29,9 @@ function PostCard({
       className={`PostCard__wrapper ${
         selected ? "PostCard__wrapper__selected" : ""
       }`}
-      style={styleOverrides}
       data-testid={testId}
       onClick={handleClickDetails}
+      {...props}
     >
       <h3
         className={`PostCard__title ${

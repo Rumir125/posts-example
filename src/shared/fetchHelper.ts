@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAPIUrl } from "../config/constants";
 
-export function useFetchHelper<T>(relativeUrl: string) {
+export function useFetchData<T>(relativeUrl: string) {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);

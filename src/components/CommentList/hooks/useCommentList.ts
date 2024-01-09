@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useFetchHelper } from "../../../shared/fetchHelper";
+import { useFetchData } from "../../../shared/fetchHelper";
 import { usePostCommentsContext } from "../../../shared/context/PostCommentsContext";
 import { CommentResponse } from "../../../shared/type";
 
@@ -10,21 +10,22 @@ const useCommentList = (postId: number | null) => {
     () => cachedPostComments.find((item) => item.postId === postId)?.comments,
     [cachedPostComments, postId]
   );
+  const hasCachedComments = !!cachedComments?.length;
 
   const {
     data: comments,
     loading,
     error,
-  } = useFetchHelper<CommentResponse[]>(
-    !cachedComments?.length ? `/posts/${postId}/comments` : ""
+  } = useFetchData<CommentResponse[]>(
+    !hasCachedComments ? `/posts/${postId}/comments` : ""
   );
 
   useEffect(() => {
-    if (cachedComments?.length) return;
+    if (hasCachedComments) return;
     if (comments?.[0]?.postId === postId) {
       addCachedComments(postId, comments);
     }
-  }, [cachedComments?.length, comments, postId, addCachedComments]);
+  }, [hasCachedComments, comments, postId, addCachedComments]);
 
   return {
     comments: cachedComments || comments,

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { useFetchHelper } from "../../../shared/fetchHelper";
+import { useFetchData } from "../../../shared/fetchHelper";
 import { PostData, UserData } from "../../../shared/type";
 
 const usePosts = () => {
@@ -7,9 +7,9 @@ const usePosts = () => {
   const [searchText, setSearchText] = useState<string>("");
 
   const { data: posts, loading: loadingPosts } =
-    useFetchHelper<PostData[]>("/posts");
+    useFetchData<PostData[]>("/posts");
   const { data: users, loading: loadingUsers } =
-    useFetchHelper<UserData[]>("/users");
+    useFetchData<UserData[]>("/users");
 
   const updatedPosts = posts?.map((post: PostData) => ({
     ...post,

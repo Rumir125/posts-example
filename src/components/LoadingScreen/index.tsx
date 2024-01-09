@@ -1,9 +1,10 @@
+import { HTMLAttributes } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
-function LoadingScreen() {
+function LoadingScreen(props: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className="LoadingScreen__container">
+    <div className="LoadingScreen__container" {...props}>
       <div className="load-ring">
         <div></div>
         <div></div>

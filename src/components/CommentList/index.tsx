@@ -1,24 +1,19 @@
-import { CSSProperties } from "react";
+import { HTMLAttributes } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import ListComponent from "../../ui-library/ListComponent";
 import useCommentList from "./hooks/useCommentList";
 import "./style.css";
 
-interface CommentListProps {
+interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
   postId: number | null;
-  styleOverrides?: CSSProperties;
   testId?: string;
 }
 
-function CommentList({ postId, styleOverrides, testId }: CommentListProps) {
+function CommentList({ postId, testId, ...props }: CommentListProps) {
   const { comments, loadingComments } = useCommentList(postId);
 
   return (
-    <div
-      className="CommentList__wrapper"
-      style={styleOverrides}
-      data-testid={testId}
-    >
+    <div className="CommentList__wrapper" data-testid={testId} {...props}>
       <h2>Comments</h2>
       <div className="CommentList__container">
         <ListComponent

@@ -4,8 +4,13 @@ import PostCard from "../PostCard";
 import ListComponent from "../../ui-library/ListComponent";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
+import { HTMLAttributes } from "react";
 
-function PostList({ testId }: { testId?: string }) {
+interface PostListProps extends HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+}
+
+function PostList({ testId, ...props }: PostListProps) {
   const {
     posts,
     currentPostId,
@@ -16,7 +21,7 @@ function PostList({ testId }: { testId?: string }) {
   } = usePosts();
 
   return (
-    <div className="PostList__wrapper" data-testid={testId}>
+    <div className="PostList__wrapper" data-testid={testId} {...props}>
       <div className="PostList__container">
         <h1>List of posts</h1>
         <div className="PostList__input-wrapper">
