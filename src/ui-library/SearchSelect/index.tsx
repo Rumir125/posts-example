@@ -94,7 +94,10 @@ const SearchSelect: FC<SelectProps> = ({
           style={{
             visibility: searchText ? "visible" : "hidden",
           }}
-          onClick={() => setSearchText("")}
+          onClick={() => {
+            setSearchText("");
+            onChangeValue?.("");
+          }}
         >
           X
         </div>
