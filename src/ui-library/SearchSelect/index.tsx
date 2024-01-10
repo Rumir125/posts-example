@@ -88,7 +88,16 @@ const SearchSelect: FC<SelectProps> = ({
           }}
           onFocus={handleInputFocus}
           placeholder={placeholder}
-        ></input>
+        />
+        <div
+          className="Select-input__clear"
+          style={{
+            visibility: searchText ? "visible" : "hidden",
+          }}
+          onClick={() => setSearchText("")}
+        >
+          X
+        </div>
         {isOpen && (
           <div className="Select__options-container">
             {options.map((option) => (
