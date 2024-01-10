@@ -34,9 +34,9 @@ describe("PostList", function () {
       posts: testPosts,
       currentPostId: null,
       setCurrentPostId: jest.fn(),
-      searchText: "",
       setSearchText: () => {},
       loading: false,
+      users: [],
     });
     (useCommentList as jest.Mock).mockReturnValueOnce({
       comments: [],
@@ -58,9 +58,9 @@ describe("PostList", function () {
       posts: [],
       currentPostId: null,
       setCurrentPostId: jest.fn(),
-      searchText: "",
       setSearchText: () => {},
       loading: false,
+      users: [],
     });
     (useCommentList as jest.Mock).mockReturnValueOnce({
       comments: [],
@@ -82,9 +82,9 @@ describe("PostList", function () {
       posts: testPosts,
       currentPostId: testPostId,
       setCurrentPostId: jest.fn(),
-      searchText: "",
       setSearchText: () => {},
       loading: false,
+      users: [],
     });
 
     (useCommentList as jest.Mock).mockReturnValueOnce({

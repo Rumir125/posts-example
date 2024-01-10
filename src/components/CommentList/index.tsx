@@ -1,6 +1,6 @@
 import { HTMLAttributes } from "react";
 import withLogger from "../../shared/hoc/withLogger";
-import ListComponent from "../../ui-library/ListComponent";
+import { ListComponent } from "../../ui-library";
 import useCommentList from "./hooks/useCommentList";
 import "./style.css";
 

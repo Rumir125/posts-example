@@ -1,10 +1,11 @@
 import withLogger from "../../shared/hoc/withLogger";
 import CommentList from "../CommentList";
 import PostCard from "../PostCard";
-import ListComponent from "../../ui-library/ListComponent";
+import { ListComponent } from "../../ui-library";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
 import { HTMLAttributes } from "react";
+import { Option, SearchSelect } from "../../ui-library";
 
 interface PostListProps extends HTMLAttributes<HTMLDivElement> {
   testId?: string;
@@ -15,9 +16,9 @@ function PostList({ testId, ...props }: PostListProps) {
     posts,
     currentPostId,
     setCurrentPostId,
-    searchText,
     setSearchText,
     loading,
+    users,
   } = usePosts();
 
   return (
@@ -25,13 +26,16 @@ function PostList({ testId, ...props }: PostListProps) {
       <div className="PostList__container">
         <h1>List of posts</h1>
         <div className="PostList__input-wrapper">
-          <input
-            value={searchText}
-            className="PostList__search-input"
-            onChange={(e) => setSearchText(e.target.value)}
-            type="text"
+          <SearchSelect
+            onChangeValue={(val) => {
+              setSearchText(val);
+            }}
             placeholder="Search posts by user name..."
-          />
+          >
+            {users.map((user) => (
+              <Option value={user.name}>{user.name}</Option>
+            ))}
+          </SearchSelect>
         </div>
         <ListComponent
           data={posts}

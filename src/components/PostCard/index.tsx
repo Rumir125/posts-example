@@ -1,7 +1,7 @@
 import { Dispatch, HTMLAttributes, SetStateAction } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import { PostData } from "../../shared/type";
-import Button from "../../ui-library/Button";
+import { Button } from "../../ui-library";
 import { usePostCard } from "./hooks/usePostCard";
 import "./style.css";
 
@@ -48,7 +48,6 @@ function PostCard({
           </p>
         </div>
         <div className="PostCard__button-container">
-          {/* <button onClick={handleClickViewComments}>Comments</button> */}
           <Button onClick={handleClickViewComments} variant="primary">
             Comments
           </Button>

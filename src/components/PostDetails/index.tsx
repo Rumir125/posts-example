@@ -5,7 +5,7 @@ import LoadingScreen from "../LoadingScreen";
 import usePostDetails from "./hooks/usePostDetails";
 
 import "./style.css";
-import Button from "../../ui-library/Button";
+import { Button } from "../../ui-library";
 
 function PostDetails({ testId }: { testId?: string }) {
   const { id } = useParams();

@@ -15,17 +15,18 @@
 }
 
 .PostsExample__button--primary {
-  /* background-color: #3f80ff; */
   color: white;
-  background-color: #2962ff;
+  background-color: #3f80ff;
   border: none;
+}
+.PostsExample__button--primary:hover {
+  background-color: #2962ff;
 }
 
 .PostsExample__button--secondary {
-  /* background-color: #3f80ff; */
-  color: #2962ff;
+  color: #3f80ff;
   background-color: white;
-  border: 1px solid #2962ff;
+  border: 1px solid #3f80ff;
 }
 
 .PostsExample__button--secondary:hover {
