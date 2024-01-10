@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import withLogger from "../../shared/hoc/withLogger";
-import CommentList from "../CommentList";
-import LoadingScreen from "../LoadingScreen";
+import CommentList from "../../components/CommentList";
+import LoadingScreen from "../../components/LoadingScreen";
 import usePostDetails from "./hooks/usePostDetails";
 
 import "./style.css";

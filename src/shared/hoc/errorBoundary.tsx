@@ -31,7 +31,7 @@ class ErrorBoundary extends Component<Props, State> {
             alignItems: "center",
           }}
         >
-          <h1>Something went wrong.</h1>{" "}
+          <h1>Something went wrong.</h1>
         </div>
       );
     }

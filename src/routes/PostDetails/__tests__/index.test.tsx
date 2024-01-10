@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import useCommentList from "../../CommentList/hooks/useCommentList";
+import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import PostDetails from "..";
 import usePostDetails from "../hooks/usePostDetails";
 import { testComments, testPost, testUser } from "../../../__mocks__/mockData";
 
-jest.mock("../../CommentList/hooks/useCommentList");
+jest.mock(".../../../components/CommentList/hooks/useCommentList");
 jest.mock("react-router-dom", () => {
   return {
     useNavigate: () => jest.fn(),

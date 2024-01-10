@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import PostList from "..";
-import useCommentList from "../../CommentList/hooks/useCommentList";
+import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePosts from "../hooks/usePosts";
 import {
   testComments,
@@ -10,7 +10,7 @@ import {
 } from "../../../__mocks__/mockData";
 
 jest.mock("../hooks/usePosts");
-jest.mock("../../PostCard/hooks/usePostCard", () => {
+jest.mock("../../../components/PostCard/hooks/usePostCard", () => {
   return {
     usePostCard: () => ({
       handleClickDetails: () => {},
@@ -18,7 +18,7 @@ jest.mock("../../PostCard/hooks/usePostCard", () => {
     }),
   };
 });
-jest.mock("../../CommentList/hooks/useCommentList");
+jest.mock("../../../components/CommentList/hooks/useCommentList");
 
 const testId = "post-list";
 describe("PostList", function () {

@@ -1,8 +1,8 @@
 import { Suspense } from "react";
 import "./App.css";
-import AppRoutes from "./AppRoutes";
+import AppRoutes from "./routes/AppRoutes";
 import LoadingScreen from "./components/LoadingScreen";
-import ErrorBoundary from "./shared/hoc/errorBoundary";
+import ErrorBoundary from "./shared/hoc/ErrorBoundary";
 import { PostCommentsProvider } from "./shared/context/PostCommentsContext";
 
 function App() {
