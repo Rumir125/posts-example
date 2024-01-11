@@ -9,6 +9,8 @@ import {
 import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePostDetails from "../hooks/usePostDetails";
 
+// TODO: Cover more test conditions
+
 jest.mock(".../../../components/CommentList/hooks/useCommentList");
 jest.mock("react-router-dom", () => {
   return {
