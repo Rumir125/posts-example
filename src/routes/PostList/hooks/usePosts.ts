@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useFetchData } from "../../../shared/fetchHelper";
 import { PostData, UserData } from "../../../shared/type";
 
@@ -15,19 +15,24 @@ const usePosts = () => {
   const { data: users, loading: loadingUsers } =
     useFetchData<UserData[]>("/users");
 
+  const filterUserIdsBySearch = useCallback(
+    (users: UserData[], search: string): number[] => {
+      return users
+        .filter((user) =>
+          user.name.toLowerCase().includes(search.toLowerCase())
+        )
+        .map((user) => user.id);
+    },
+    []
+  );
+
   const usersFilter = useMemo(() => {
     if (!activeSearch) return "";
-    let filteredUserIds: number[] = [];
-    if (activeSearch) {
-      filteredUserIds =
-        users
-          ?.filter((post) =>
-            post?.name.toLowerCase().includes(activeSearch.toLowerCase())
-          )
-          ?.map((post) => post.id) || [];
-    }
-    const query = `&${filteredUserIds.map((id) => `userId=${id}`).join("&")}`;
-    return query;
+    let filteredUserIds: number[] = filterUserIdsBySearch(
+      users || [],
+      activeSearch
+    );
+    return `&${filteredUserIds.map((id) => `userId=${id}`).join("&")}`;
   }, [activeSearch, users]);
 
   const { data: posts, loading: loadingPosts } = useFetchData<PostData[]>(
@@ -56,6 +61,9 @@ const usePosts = () => {
 
   const handleSearch = () => {
     if (searchText === activeSearch) return;
+    const oldIds = filterUserIdsBySearch(users || [], searchText);
+    const newIds = filterUserIdsBySearch(users || [], activeSearch);
+    if (JSON.stringify(oldIds) === JSON.stringify(newIds)) return;
     setCurrentOffset(0);
     setActiveSearch(searchText);
     setLoadedPosts([]);

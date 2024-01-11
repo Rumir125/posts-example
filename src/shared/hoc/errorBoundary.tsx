@@ -1,5 +1,6 @@
 // Error boundaries are React components that catch JavaScript errors anywhere in their child component tree,
 import React, { Component, ErrorInfo } from "react";
+import withLogger from "./withLogger";
 
 interface Props {
   children: React.ReactNode;
@@ -40,4 +41,4 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-export default ErrorBoundary;
+export default withLogger(ErrorBoundary);

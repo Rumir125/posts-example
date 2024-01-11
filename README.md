@@ -47,9 +47,13 @@ For production version run:
 
 `npm run build`
 
-and to start production build run:
+To run the build version on your local machine, you can follow these steps
 
-`npm run preview`
+```
+npm install -g serve
+serve dist
+
+```
 
 ## Testing
 

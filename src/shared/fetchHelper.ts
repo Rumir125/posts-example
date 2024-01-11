@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getAPIUrl } from "../config/constants";
 
+const CACHE_DATA_WAIT_TIME = 200;
+
 interface CacheInterface<T> {
   [key: string]: T | null;
 }
@@ -20,7 +22,10 @@ export function useFetchData<T>(relativeUrl: string) {
       // Simply retrieve data from cache if it exists
       if (cachedData[relativeUrl]) {
         setLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        // Wait for a bit to show loading state
+        await new Promise((resolve) =>
+          setTimeout(resolve, CACHE_DATA_WAIT_TIME)
+        );
         setData(cachedData[relativeUrl]);
         setLoading(false);
         return;
