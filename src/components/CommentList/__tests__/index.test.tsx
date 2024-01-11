@@ -1,10 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import CommentList from "..";
+import {
+  testPostId,
+  useCommentListMockReturnData,
+} from "../../../__mocks__/mockData";
 import useCommentList from "../hooks/useCommentList";
-import { testComments, testPostId } from "../../../__mocks__/mockData";
 
 jest.mock("../hooks/useCommentList");
+const useCommentListMock = useCommentList as jest.Mock;
 
 const testId = "comment-list";
 describe("CommentList", function () {
@@ -16,11 +20,9 @@ describe("CommentList", function () {
   beforeAll(() => jest.resetAllMocks());
 
   it("should display empty comment list", async function () {
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [],
-      loadingComments: false,
-      error: null,
-    });
+    useCommentListMock.mockReturnValueOnce(
+      useCommentListMockReturnData({ comments: [] })
+    );
     act(() => {
       render(
         <CommentList
@@ -36,11 +38,7 @@ describe("CommentList", function () {
   });
 
   it("should display comment list with one comment", async function () {
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: testComments,
-      loadingComments: false,
-      error: null,
-    });
+    useCommentListMock.mockReturnValueOnce(useCommentListMockReturnData());
     act(() => {
       render(
         <CommentList

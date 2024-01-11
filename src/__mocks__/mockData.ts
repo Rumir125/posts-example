@@ -30,3 +30,27 @@ export const testUser = {
   userName: "john123",
   email: "test@mail.com",
 };
+
+export const usePostsMockReturnData = (overrides?: any) => {
+  return {
+    posts: [],
+    currentPostId: null,
+    setCurrentPostId: jest.fn(),
+    setSearchText: () => {},
+    loading: false,
+    users: [],
+    setCurrentOffset: () => {},
+    setLoadedPosts: () => {},
+    handleSearch: () => {},
+    currentOffset: 0,
+    loadMoreDisabled: false,
+    ...overrides,
+  };
+};
+
+export const useCommentListMockReturnData = (overrides?: any) => ({
+  comments: testComments,
+  loadingComments: false,
+  error: null,
+  ...overrides,
+});

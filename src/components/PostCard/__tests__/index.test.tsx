@@ -1,5 +1,5 @@
 import PostCard from "..";
-import { PostData } from "../../../shared/type";
+import { testPost } from "../../../__mocks__/mockData";
 
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
@@ -15,14 +15,6 @@ jest.mock("../hooks/usePostCard", () => {
   };
 });
 
-const testPostData: PostData = {
-  id: 1,
-  title: "title",
-  body: "body",
-  userName: "test user name",
-  userId: 1,
-};
-
 describe("App", function () {
   beforeEach(() => {
     console.log = jest.fn();
@@ -32,15 +24,15 @@ describe("App", function () {
       render(
         <PostCard
           propsMessage="Hello component"
-          postData={testPostData}
+          postData={testPost}
           setCurrentPostId={() => {}}
           testId={testId}
         />
       );
     });
     expect(screen.queryByTestId(testId)).toBeInTheDocument();
-    expect(screen.getByText(testPostData.title)).toBeInTheDocument();
-    expect(screen.getByText(testPostData.userName)).toBeInTheDocument();
+    expect(screen.getByText(testPost.title)).toBeInTheDocument();
+    expect(screen.getByText(testPost.userName)).toBeInTheDocument();
 
     expect(console.log).toHaveBeenCalledWith("Hello component PostCard");
   });

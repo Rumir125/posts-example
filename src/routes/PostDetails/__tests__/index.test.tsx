@@ -1,9 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import PostDetails from "..";
+import {
+  testPost,
+  testUser,
+  useCommentListMockReturnData,
+} from "../../../__mocks__/mockData";
+import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePostDetails from "../hooks/usePostDetails";
-import { testComments, testPost, testUser } from "../../../__mocks__/mockData";
 
 jest.mock(".../../../components/CommentList/hooks/useCommentList");
 jest.mock("react-router-dom", () => {
@@ -15,6 +19,8 @@ jest.mock("react-router-dom", () => {
   };
 });
 jest.mock("../hooks/usePostDetails");
+const usePostDetailsMock = usePostDetails as jest.Mock;
+const useCommentListMock = useCommentList as jest.Mock;
 
 const testId = "post-details";
 describe("PostDetails", function () {
@@ -26,17 +32,13 @@ describe("PostDetails", function () {
   beforeAll(() => jest.resetAllMocks());
 
   it("should display Posts details with comment list", async function () {
-    (usePostDetails as jest.Mock).mockReturnValueOnce({
+    usePostDetailsMock.mockReturnValueOnce({
       post: testPost,
       user: testUser,
       loading: false,
     });
 
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: testComments,
-      loadingComments: false,
-      error: null,
-    });
+    useCommentListMock.mockReturnValueOnce(useCommentListMockReturnData());
     act(() => {
       render(<PostDetails propsMessage="Hello component" testId={testId} />);
     });

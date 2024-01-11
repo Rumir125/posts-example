@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import PostList from "..";
+import {
+  testPosts,
+  useCommentListMockReturnData,
+  usePostsMockReturnData,
+} from "../../../__mocks__/mockData";
 import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePosts from "../hooks/usePosts";
-import {
-  testComments,
-  testPostId,
-  testPosts,
-} from "../../../__mocks__/mockData";
 
 jest.mock("../hooks/usePosts");
 jest.mock("../../../components/PostCard/hooks/usePostCard", () => {
@@ -19,6 +19,8 @@ jest.mock("../../../components/PostCard/hooks/usePostCard", () => {
   };
 });
 jest.mock("../../../components/CommentList/hooks/useCommentList");
+const usePostsMock = usePosts as jest.Mock;
+const useCommentListMock = useCommentList as jest.Mock;
 
 const testId = "post-list";
 describe("PostList", function () {
@@ -30,24 +32,12 @@ describe("PostList", function () {
   beforeAll(() => jest.resetAllMocks());
 
   it("should display Posts list with empty comment list", async function () {
-    (usePosts as jest.Mock).mockReturnValueOnce({
-      posts: testPosts,
-      currentPostId: null,
-      setCurrentPostId: jest.fn(),
-      setSearchText: () => {},
-      loading: false,
-      users: [],
-      setCurrentOffset: () => {},
-      setLoadedPosts: () => {},
-      handleSearch: () => {},
-      currentOffset: 0,
-      loadMoreDisabled: false,
-    });
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [],
-      loadingComments: false,
-      error: null,
-    });
+    usePostsMock.mockReturnValueOnce(
+      usePostsMockReturnData({ posts: testPosts })
+    );
+    useCommentListMock.mockReturnValueOnce(
+      useCommentListMockReturnData({ comments: [] })
+    );
     act(() => {
       render(<PostList propsMessage="Hello component" testId={testId} />);
     });
@@ -59,24 +49,10 @@ describe("PostList", function () {
     expect(console.log).toHaveBeenCalledWith("Hello component PostList");
   });
   it("should display empty PostList", async function () {
-    (usePosts as jest.Mock).mockReturnValueOnce({
-      posts: [],
-      currentPostId: null,
-      setCurrentPostId: jest.fn(),
-      setSearchText: () => {},
-      loading: false,
-      users: [],
-      setCurrentOffset: () => {},
-      setLoadedPosts: () => {},
-      handleSearch: () => {},
-      currentOffset: 0,
-      loadMoreDisabled: false,
-    });
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: [],
-      loadingComments: false,
-      error: null,
-    });
+    usePostsMock.mockReturnValueOnce(usePostsMockReturnData());
+    useCommentListMock.mockReturnValueOnce(
+      useCommentListMockReturnData({ comments: [] })
+    );
     act(() => {
       render(<PostList propsMessage="Hello component" testId={testId} />);
     });
@@ -88,25 +64,11 @@ describe("PostList", function () {
   });
 
   it("should display PostList with comment list", async function () {
-    (usePosts as jest.Mock).mockReturnValueOnce({
-      posts: testPosts,
-      currentPostId: testPostId,
-      setCurrentPostId: jest.fn(),
-      setSearchText: () => {},
-      loading: false,
-      users: [],
-      setCurrentOffset: () => {},
-      setLoadedPosts: () => {},
-      handleSearch: () => {},
-      currentOffset: 0,
-      loadMoreDisabled: false,
-    });
+    usePostsMock.mockReturnValueOnce(
+      usePostsMockReturnData({ posts: testPosts })
+    );
 
-    (useCommentList as jest.Mock).mockReturnValueOnce({
-      comments: testComments,
-      loadingComments: false,
-      error: null,
-    });
+    useCommentListMock.mockReturnValueOnce(useCommentListMockReturnData());
     act(() => {
       render(<PostList propsMessage="Hello component" testId={testId} />);
     });
