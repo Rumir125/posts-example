@@ -52,7 +52,6 @@ To run the build version on your local machine, you can follow these steps
 ```
 npm install -g serve
 serve dist
-
 ```
 
 ## Testing
