@@ -16,6 +16,9 @@
 .PostList__input-wrapper {
   display: flex;
   justify-content: center;
+  padding-bottom: 12px;
+  column-gap: 8px;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .PostList__search-input {
@@ -40,4 +43,9 @@
   flex: 2;
   max-height: 100vh;
   overflow: hidden;
+}
+
+.PostList__load-more-wrapper {
+  padding: 12px 0px;
+  border-top: 1px solid #d9d9d9;
 }

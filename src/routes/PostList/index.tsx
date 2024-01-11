@@ -1,11 +1,10 @@
-import withLogger from "../../shared/hoc/withLogger";
+import { HTMLAttributes } from "react";
 import CommentList from "../../components/CommentList";
 import PostCard from "../../components/PostCard";
-import { ListComponent } from "../../ui-library";
+import withLogger from "../../shared/hoc/withLogger";
+import { Button, ListComponent, Option, SearchSelect } from "../../ui-library";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
-import { HTMLAttributes } from "react";
-import { Option, SearchSelect } from "../../ui-library";
 
 interface PostListProps extends HTMLAttributes<HTMLDivElement> {
   testId?: string;
@@ -17,8 +16,12 @@ function PostList({ testId, ...props }: PostListProps) {
     currentPostId,
     setCurrentPostId,
     setSearchText,
-    loading,
+    loading: loadingPosts,
     users,
+    setCurrentOffset,
+    handleSearch,
+    loadMoreDisabled,
+    currentOffset,
   } = usePosts();
 
   return (
@@ -33,13 +36,18 @@ function PostList({ testId, ...props }: PostListProps) {
             placeholder="Search posts by user name..."
           >
             {users.map((user) => (
-              <Option value={user.name}>{user.name}</Option>
+              <Option key={user.id} value={user.name}>
+                {user.name}
+              </Option>
             ))}
           </SearchSelect>
+          <Button variant="primary" onClick={handleSearch}>
+            Search
+          </Button>
         </div>
         <ListComponent
           data={posts}
-          loadingData={loading}
+          loadingData={loadingPosts && currentOffset === 0}
           itemKey="id"
           noDataMessage="No posts found"
           renderItem={(postData) => (
@@ -51,6 +59,15 @@ function PostList({ testId, ...props }: PostListProps) {
             />
           )}
         />
+        <div className="PostList__load-more-wrapper">
+          <Button
+            variant="primary"
+            disabled={loadingPosts || loadMoreDisabled}
+            onClick={() => setCurrentOffset((prevState) => prevState + 1)}
+          >
+            Load more
+          </Button>
+        </div>
       </div>
       <div className="PostList__comments-wrapper">
         <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />

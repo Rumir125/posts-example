@@ -1,6 +1,7 @@
 import React, { FC, HTMLAttributes, useEffect, useState } from "react";
-import "./style.css";
 import { ClickOutsideListener } from "..";
+import withLogger from "../../shared/hoc/withLogger";
+import "./style.css";
 
 interface OptionProps {
   value: string;
@@ -21,12 +22,14 @@ interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   onChangeValue: (value: string) => void;
   children: React.ReactNode;
   placeholder?: string;
+  onItemSelected?: (value: string) => void;
 }
 
 const SearchSelect: FC<SelectProps> = ({
   children,
   onChangeValue,
   placeholder = "",
+  onItemSelected,
   ...props
 }) => {
   const [searchText, setSearchText] = useState("");
@@ -38,8 +41,10 @@ const SearchSelect: FC<SelectProps> = ({
   useEffect(() => {
     const childOptions = React.Children.map(children, (child) => {
       if (
-        React.isValidElement(child) &&
-        (child.type as { name: string })?.name === Option.name
+        React.isValidElement(child)
+        // TODO: Fix this child check
+        // &&
+        // (child.type as { name: string })?.name === Option.name
       ) {
         return {
           value: (child.props as OptionProps).value,
@@ -69,6 +74,7 @@ const SearchSelect: FC<SelectProps> = ({
     setSearchText(value);
     setIsOpen(false);
     onChangeValue?.(value);
+    onItemSelected?.(value);
   };
 
   return (
@@ -121,4 +127,7 @@ const SearchSelect: FC<SelectProps> = ({
   );
 };
 
-export { Option, SearchSelect };
+const LoggedOption = withLogger(Option);
+const LoggedSearchSelect = withLogger(SearchSelect);
+
+export { LoggedOption as Option, LoggedSearchSelect as SearchSelect };

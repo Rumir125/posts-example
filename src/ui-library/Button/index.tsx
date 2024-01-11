@@ -12,7 +12,7 @@ function Button({ children, variant, ...props }: ButtonProps) {
       ? "PostsExample__button--primary"
       : "PostsExample__button--secondary";
   return (
-    <button className={`PostsExample__button ${buttonVariant}`} {...props}>
+    <button className={` PostsExample__button ${buttonVariant}`} {...props}>
       {children}
     </button>
   );

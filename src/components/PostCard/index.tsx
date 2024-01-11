@@ -5,6 +5,7 @@ import { Button } from "../../ui-library";
 import { usePostCard } from "./hooks/usePostCard";
 import "./style.css";
 
+// TODO: Create a generic card component that can be used for posts and comments
 interface PostCardProps extends HTMLAttributes<HTMLDivElement> {
   postData: PostData;
   setCurrentPostId: Dispatch<SetStateAction<number | null>>;
@@ -48,7 +49,7 @@ function PostCard({
           </p>
         </div>
         <div className="PostCard__button-container">
-          <Button onClick={handleClickViewComments} variant="primary">
+          <Button onClick={handleClickViewComments} variant="secondary">
             Comments
           </Button>
         </div>

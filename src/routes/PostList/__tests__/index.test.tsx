@@ -37,6 +37,11 @@ describe("PostList", function () {
       setSearchText: () => {},
       loading: false,
       users: [],
+      setCurrentOffset: () => {},
+      setLoadedPosts: () => {},
+      handleSearch: () => {},
+      currentOffset: 0,
+      loadMoreDisabled: false,
     });
     (useCommentList as jest.Mock).mockReturnValueOnce({
       comments: [],
@@ -61,6 +66,11 @@ describe("PostList", function () {
       setSearchText: () => {},
       loading: false,
       users: [],
+      setCurrentOffset: () => {},
+      setLoadedPosts: () => {},
+      handleSearch: () => {},
+      currentOffset: 0,
+      loadMoreDisabled: false,
     });
     (useCommentList as jest.Mock).mockReturnValueOnce({
       comments: [],
@@ -85,6 +95,11 @@ describe("PostList", function () {
       setSearchText: () => {},
       loading: false,
       users: [],
+      setCurrentOffset: () => {},
+      setLoadedPosts: () => {},
+      handleSearch: () => {},
+      currentOffset: 0,
+      loadMoreDisabled: false,
     });
 
     (useCommentList as jest.Mock).mockReturnValueOnce({

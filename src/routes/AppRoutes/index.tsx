@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import PostList from "../PostList";
 import PostDetails from "../PostDetails";
+import PostList from "../PostList";
 
 export default function AppRoutes() {
   return (

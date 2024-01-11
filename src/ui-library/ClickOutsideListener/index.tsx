@@ -1,4 +1,5 @@
 import React, { HTMLAttributes, ReactNode, useEffect, useRef } from "react";
+import withLogger from "../../shared/hoc/withLogger";
 
 /**
  * Hook that handles clicks outside of the passed ref
@@ -45,4 +46,4 @@ const ClickOutsideListener: React.FC<ClickOutsideListenerProps> = ({
   );
 };
 
-export default ClickOutsideListener;
+export default withLogger(ClickOutsideListener);

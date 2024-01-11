@@ -1,7 +1,7 @@
-import withLogger from "../../shared/hoc/withLogger";
-import LoadingScreen from "../../components/LoadingScreen";
-import "./style.css";
 import { HTMLAttributes } from "react";
+import LoadingScreen from "../../components/LoadingScreen";
+import withLogger from "../../shared/hoc/withLogger";
+import "./style.css";
 
 interface ListComponentProps extends HTMLAttributes<HTMLDivElement> {
   data: any[];

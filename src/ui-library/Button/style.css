@@ -8,6 +8,10 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+.PostsExample__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 .PostsExample__button:focus,
 .PostsExample__button:focus-visible {
@@ -22,6 +26,9 @@
 .PostsExample__button--primary:hover {
   background-color: #2962ff;
 }
+.PostsExample__button--primary:hover:disabled {
+  background-color: #3f80ff;
+}
 
 .PostsExample__button--secondary {
   color: #3f80ff;
@@ -31,4 +38,7 @@
 
 .PostsExample__button--secondary:hover {
   background-color: #dae3fb;
+}
+.PostsExample__button--secondary:hover:disabled {
+  background-color: white;
 }

@@ -1,6 +1,7 @@
 import { useFetchData } from "../../../shared/fetchHelper";
 import { PostData, UserData } from "../../../shared/type";
 
+// TODO - add unit tests for this hook
 const usePostDetails = (id: number) => {
   const { data: post, loading: loadingPost } = useFetchData<PostData>(
     `/posts/${id}`
