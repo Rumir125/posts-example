@@ -9,8 +9,6 @@ import {
 import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePostDetails from "../hooks/usePostDetails";
 
-// TODO: Cover more test conditions
-
 jest.mock(".../../../components/CommentList/hooks/useCommentList");
 jest.mock("react-router-dom", () => {
   return {
@@ -50,5 +48,45 @@ describe("PostDetails", function () {
     expect(screen.getByText("title")).toBeInTheDocument();
     expect(screen.getByTestId(`${testId}-comment-list`)).toBeInTheDocument();
     expect(console.log).toHaveBeenCalledWith("Hello component PostDetails");
+  });
+
+  it("should display Error in list component", async function () {
+    usePostDetailsMock.mockReturnValueOnce({
+      post: testPost,
+      user: testUser,
+      loading: false,
+    });
+
+    const testError = new Error("test error");
+
+    useCommentListMock.mockReturnValueOnce(
+      useCommentListMockReturnData({ error: testError, comments: null })
+    );
+    act(() => {
+      render(<PostDetails testId={testId} />);
+    });
+
+    expect(screen.getByText("John Doe")).toBeInTheDocument();
+    expect(screen.getByText("example body text")).toBeInTheDocument();
+    expect(screen.getByText("title")).toBeInTheDocument();
+    expect(screen.getByText("test error")).toBeInTheDocument();
+  });
+
+  it("should display error for the PostDetails", async function () {
+    usePostDetailsMock.mockReturnValueOnce({
+      post: null,
+      user: testUser,
+      loading: false,
+      error: new Error("test error"),
+    });
+
+    useCommentListMock.mockReturnValueOnce(useCommentListMockReturnData());
+    act(() => {
+      render(<PostDetails testId={testId} />);
+    });
+
+    expect(screen.queryByText("John Doe")).not.toBeInTheDocument();
+    expect(screen.queryByText("example body text")).not.toBeInTheDocument();
+    expect(screen.getByText("Something went wrong")).toBeInTheDocument();
   });
 });
