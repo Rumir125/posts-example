@@ -30,8 +30,6 @@ function PostList({ testId, ...props }: PostListProps) {
     return <ErrorScreen />;
   }
 
-  console.log("render");
-
   return (
     <div className="PostList__wrapper" data-testid={testId} {...props}>
       <div className="PostList__container">
