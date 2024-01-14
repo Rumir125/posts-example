@@ -1,17 +1,22 @@
 import { useNavigate, useParams } from "react-router-dom";
-import withLogger from "../../shared/hoc/withLogger";
 import CommentList from "../../components/CommentList";
 import LoadingScreen from "../../components/LoadingScreen";
+import withLogger from "../../shared/hoc/withLogger";
 import usePostDetails from "./hooks/usePostDetails";
 
-import "./style.css";
+import ErrorScreen from "../../components/ErrorScreen";
 import { Button } from "../../ui-library";
+import "./style.css";
 
 function PostDetails({ testId }: { testId?: string }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { post, user, loading } = usePostDetails(Number(id));
+  const { post, user, loading, error } = usePostDetails(Number(id));
+
+  if (error) {
+    return <ErrorScreen />;
+  }
 
   if (!post || loading) {
     return <LoadingScreen />;

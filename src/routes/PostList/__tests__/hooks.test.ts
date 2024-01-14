@@ -51,11 +51,11 @@ describe("usePosts", () => {
     );
     const { result } = renderHook(() => usePosts());
     await act(async () => {
-      await result.current.setSearchText(newTestUser.name);
+      result.current.setSearchText(newTestUser.name);
     });
 
     await act(async () => {
-      await result.current.handleSearch();
+      result.current.handleSearch();
     });
 
     await waitFor(() => {

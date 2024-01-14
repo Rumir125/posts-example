@@ -1,16 +1,27 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getAPIUrl } from "../config/constants";
+import { CachedFetchContext } from "./context/CachedFetchContext";
 
 const CACHE_DATA_WAIT_TIME = 200;
 
-interface CacheInterface<T> {
-  [key: string]: T | null;
-}
-export function useFetchData<T>(relativeUrl: string) {
-  const [cachedData, setCachedData] = useState<CacheInterface<T>>({});
+type FetchOptions = {
+  useGlobalCache: boolean;
+};
+
+export function useFetchData<T>(
+  relativeUrl: string,
+  options: FetchOptions = { useGlobalCache: true }
+) {
+  const { useGlobalCache } = options;
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+
+  const {
+    cachedData: globalCache,
+    updateCachedData,
+    clearAllCachedData,
+  } = useContext(CachedFetchContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,15 +29,14 @@ export function useFetchData<T>(relativeUrl: string) {
         setLoading(false);
         return;
       }
-      // TODO - implement cache invalidation, create global cache
       // Simply retrieve data from cache if it exists
-      if (cachedData[relativeUrl]) {
+      if (useGlobalCache && globalCache[relativeUrl]) {
         setLoading(true);
         // Wait for a bit to show loading state
         await new Promise((resolve) =>
           setTimeout(resolve, CACHE_DATA_WAIT_TIME)
         );
-        setData(cachedData[relativeUrl]);
+        setData(globalCache[relativeUrl] as T | null);
         setLoading(false);
         return;
       }
@@ -35,10 +45,11 @@ export function useFetchData<T>(relativeUrl: string) {
         const res = await fetch(`${getAPIUrl()}${relativeUrl}`);
         const data = await res.json();
         setData(data);
-        setCachedData((prev) => ({ ...prev, [relativeUrl]: data }));
+        updateCachedData(relativeUrl, data);
       } catch (err) {
         if (err instanceof Error) {
           setError(err);
+          setData(null);
         }
       } finally {
         setLoading(false);
@@ -48,5 +59,15 @@ export function useFetchData<T>(relativeUrl: string) {
     fetchData();
   }, [relativeUrl]);
 
-  return { data: cachedData[relativeUrl] || data, loading, error };
+  const invalidateCache = (url: string) => {
+    updateCachedData(url, null);
+  };
+
+  return {
+    data,
+    loading,
+    error,
+    invalidateCache,
+    clearAllCachedData,
+  };
 }

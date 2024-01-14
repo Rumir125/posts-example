@@ -5,6 +5,7 @@ import withLogger from "../../shared/hoc/withLogger";
 import { Button, ListComponent, Option, SearchSelect } from "../../ui-library";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
+import ErrorScreen from "../../components/ErrorScreen";
 
 interface PostListProps extends HTMLAttributes<HTMLDivElement> {
   testId?: string;
@@ -22,7 +23,14 @@ function PostList({ testId, ...props }: PostListProps) {
     handleSearch,
     loadMoreDisabled,
     currentOffset,
+    error,
   } = usePosts();
+
+  if (error) {
+    return <ErrorScreen />;
+  }
+
+  console.log("render");
 
   return (
     <div className="PostList__wrapper" data-testid={testId} {...props}>

@@ -4,7 +4,6 @@ import { PostData, UserData } from "../../../shared/type";
 
 const POSTS_FETCH_LIMIT = 50;
 
-// TODO - add unit tests for this hook
 const usePosts = () => {
   const [currentPostId, setCurrentPostId] = useState<number | null>(null);
   const [searchText, setSearchText] = useState<string>("");
@@ -12,8 +11,11 @@ const usePosts = () => {
   const [loadedPosts, setLoadedPosts] = useState<PostData[]>([]);
   const [activeSearch, setActiveSearch] = useState<string>("");
 
-  const { data: users, loading: loadingUsers } =
-    useFetchData<UserData[]>("/users");
+  const {
+    data: users,
+    loading: loadingUsers,
+    error: usersError,
+  } = useFetchData<UserData[]>("/users");
 
   const filterUserIdsBySearch = useCallback(
     (users: UserData[], search: string): number[] => {
@@ -35,7 +37,11 @@ const usePosts = () => {
     return `&${filteredUserIds.map((id) => `userId=${id}`).join("&")}`;
   }, [activeSearch, users]);
 
-  const { data: posts, loading: loadingPosts } = useFetchData<PostData[]>(
+  const {
+    data: posts,
+    loading: loadingPosts,
+    error: postsError,
+  } = useFetchData<PostData[]>(
     `/posts?_limit=${POSTS_FETCH_LIMIT}&_start=${
       currentOffset * POSTS_FETCH_LIMIT
     }${usersFilter}`
@@ -85,6 +91,7 @@ const usePosts = () => {
     handleSearch,
     currentOffset,
     loadMoreDisabled,
+    error: postsError || usersError,
   };
 };
 

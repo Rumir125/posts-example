@@ -1,7 +1,6 @@
 import { useFetchData } from "../../../shared/fetchHelper";
 import { CommentResponse } from "../../../shared/type";
 
-// TODO - add unit test for this hook
 const useCommentList = (postId: number | null) => {
   const {
     data: comments,

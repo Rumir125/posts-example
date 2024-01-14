@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-// TODO -add unit tests for this hook
 export const usePostCard = (
   id: number,
   setCurrentPostId: Dispatch<SetStateAction<number | null>>

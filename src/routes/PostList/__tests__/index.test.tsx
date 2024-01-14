@@ -9,8 +9,6 @@ import {
 import useCommentList from "../../../components/CommentList/hooks/useCommentList";
 import usePosts from "../hooks/usePosts";
 
-// TODO: Cover more test conditions
-
 jest.mock("../hooks/usePosts");
 jest.mock("../../../components/PostCard/hooks/usePostCard", () => {
   return {

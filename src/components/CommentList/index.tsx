@@ -3,6 +3,7 @@ import withLogger from "../../shared/hoc/withLogger";
 import { ListComponent } from "../../ui-library";
 import useCommentList from "./hooks/useCommentList";
 import "./style.css";
+import ErrorScreen from "../ErrorScreen";
 
 interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
   postId: number | null;
@@ -10,7 +11,11 @@ interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 function CommentList({ postId, testId, ...props }: CommentListProps) {
-  const { comments, loadingComments } = useCommentList(postId);
+  const { comments, loadingComments, error } = useCommentList(postId);
+
+  if (error) {
+    return <ErrorScreen message={error.message} />;
+  }
 
   return (
     <div className="CommentList__wrapper" data-testid={testId} {...props}>
