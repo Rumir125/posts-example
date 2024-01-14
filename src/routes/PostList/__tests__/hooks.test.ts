@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 import expect from "expect";
 import { testPosts, testUser } from "../../../__mocks__/mockData";
 import { useFetchData } from "../../../shared/fetchHelper";
@@ -32,6 +32,39 @@ describe("usePosts", () => {
     expect(result.current.searchText).toEqual("");
     expect(useFetchData).toHaveBeenCalledWith("/users");
     expect(useFetchData).toHaveBeenCalledWith("/posts?_limit=50&_start=0");
+  });
+
+  it("should call handle search", async () => {
+    const newTestUser = { ...testUser, id: 2, name: "Jim" };
+    (useFetchData as jest.Mock).mockImplementation((url: string) =>
+      url.includes("/users")
+        ? {
+            data: [testUser, newTestUser],
+            loading: false,
+            error: null,
+          }
+        : {
+            data: testPosts,
+            loading: false,
+            error: null,
+          }
+    );
+    const { result } = renderHook(() => usePosts());
+    await act(async () => {
+      await result.current.setSearchText(newTestUser.name);
+    });
+
+    await act(async () => {
+      await result.current.handleSearch();
+    });
+
+    await waitFor(() => {
+      expect(useFetchData).toHaveBeenCalledWith(
+        `/posts?_limit=50&_start=0&userId=${newTestUser.id}`
+      );
+      expect(result.current.searchText).toEqual(newTestUser.name);
+      expect(result.current.users).toEqual([testUser, newTestUser]);
+    });
 
     expect(true).toEqual(true);
   });

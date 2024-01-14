@@ -61,8 +61,8 @@ const usePosts = () => {
 
   const handleSearch = () => {
     if (searchText === activeSearch) return;
-    const oldIds = filterUserIdsBySearch(users || [], searchText);
-    const newIds = filterUserIdsBySearch(users || [], activeSearch);
+    const newIds = filterUserIdsBySearch(users || [], searchText);
+    const oldIds = filterUserIdsBySearch(users || [], activeSearch);
     if (JSON.stringify(oldIds) === JSON.stringify(newIds)) return;
     setCurrentOffset(0);
     setActiveSearch(searchText);
