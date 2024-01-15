@@ -32,7 +32,7 @@ describe("usePostCard", () => {
     act(() => {
       result.current.handleClickViewComments({
         stopPropagation: () => stopPropagationMock(),
-      } as any);
+      }  as React.MouseEvent<HTMLButtonElement, MouseEvent>);
     });
 
     expect(stopPropagationMock).toHaveBeenCalled();

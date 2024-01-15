@@ -9,6 +9,7 @@ interface WithLoggerProps {
 const withLogger = <P extends object>(
   WrappedComponent: ComponentType<P & WithLoggerProps>
 ) => {
+  // eslint-disable-next-line react/display-name
   return ({
     propsMessage = DEFAULT_PROPS_MESSAGE,
     ...props

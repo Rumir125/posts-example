@@ -29,7 +29,7 @@ const usePosts = () => {
 
   const usersFilter = useMemo(() => {
     if (!activeSearch) return "";
-    let filteredUserIds: number[] = filterUserIdsBySearch(
+    const filteredUserIds: number[] = filterUserIdsBySearch(
       users || [],
       activeSearch
     );

@@ -31,7 +31,7 @@ export const testUser = {
   email: "test@mail.com",
 };
 
-export const usePostsMockReturnData = (overrides?: any) => {
+export const usePostsMockReturnData = (overrides?: object) => {
   return {
     posts: [],
     currentPostId: null,
@@ -47,7 +47,7 @@ export const usePostsMockReturnData = (overrides?: any) => {
   };
 };
 
-export const useCommentListMockReturnData = (overrides?: any) => ({
+export const useCommentListMockReturnData = (overrides?: object) => ({
   comments: testComments,
   loadingComments: false,
   error: null,

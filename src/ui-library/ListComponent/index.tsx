@@ -4,7 +4,9 @@ import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
 interface ListComponentProps extends HTMLAttributes<HTMLDivElement> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   renderItem: (item: any) => JSX.Element;
   itemKey: string;
   noDataMessage?: string;
@@ -26,7 +28,7 @@ function ListComponent({
     <div className={`ListComponent__wrapper ${className}`} {...props}>
       {loadingData ? (
         <LoadingScreen />
-      ) : !!data.length ? (
+      ) : data.length ? (
         <ul className="ListComponent__list-wrapper">
           {data.map((item) => (
             <li key={item[itemKey]}>{renderItem(item)}</li>
