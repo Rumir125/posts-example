@@ -1,6 +1,7 @@
+import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
-export default function ErrorScreen({
+function ErrorScreen({
   message = "Something went wrong",
 }: {
   message?: string;
@@ -11,3 +12,5 @@ export default function ErrorScreen({
     </div>
   );
 }
+
+export default withLogger(ErrorScreen);
