@@ -26,13 +26,7 @@ function Button({ children, variant, icon, iconProps, ...props }: ButtonProps) {
       className={`PostsExample__button  PostsExample__button--${variant}`}
       {...props}
     >
-      <div
-        style={{
-          display: "flex",
-          columnGap: "8px",
-          alignItems: "center",
-        }}
-      >
+      <div className="PostsExample__button_container">
         {icon && Icon}
         {children}
       </div>

@@ -6,7 +6,6 @@ const POSTS_FETCH_LIMIT = 50;
 
 const usePosts = () => {
   const [currentPostId, setCurrentPostId] = useState<number | null>(null);
-  const [searchText, setSearchText] = useState<string>("");
   const [currentOffset, setCurrentOffset] = useState<number>(0);
   const [loadedPosts, setLoadedPosts] = useState<PostData[]>([]);
   const [activeSearch, setActiveSearch] = useState<string>("");
@@ -65,13 +64,15 @@ const usePosts = () => {
       users?.find((user: UserData) => user.id === post.userId)?.name || "",
   }));
 
-  const handleSearch = () => {
-    if (searchText === activeSearch) return;
-    const newIds = filterUserIdsBySearch(users || [], searchText);
+  const handleSearch = (textInput:string) => {
+    if (textInput === activeSearch) return;
+    const newIds = filterUserIdsBySearch(users || [], textInput);
     const oldIds = filterUserIdsBySearch(users || [], activeSearch);
     if (JSON.stringify(oldIds) === JSON.stringify(newIds)) return;
+    if(newIds.length === 0) return;
+
     setCurrentOffset(0);
-    setActiveSearch(searchText);
+    setActiveSearch(textInput);
     setLoadedPosts([]);
   };
 
@@ -84,8 +85,6 @@ const usePosts = () => {
     setCurrentPostId,
     loading: loadingPosts || loadingUsers,
     users: users || [],
-    searchText,
-    setSearchText,
     setCurrentOffset,
     setLoadedPosts,
     handleSearch,

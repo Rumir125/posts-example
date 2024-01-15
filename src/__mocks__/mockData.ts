@@ -36,7 +36,6 @@ export const usePostsMockReturnData = (overrides?: any) => {
     posts: [],
     currentPostId: null,
     setCurrentPostId: jest.fn(),
-    setSearchText: () => {},
     loading: false,
     users: [],
     setCurrentOffset: () => {},

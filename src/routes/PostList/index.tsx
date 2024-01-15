@@ -16,7 +16,6 @@ function PostList({ testId, ...props }: PostListProps) {
     posts,
     currentPostId,
     setCurrentPostId,
-    setSearchText,
     loading: loadingPosts,
     users,
     setCurrentOffset,
@@ -30,16 +29,21 @@ function PostList({ testId, ...props }: PostListProps) {
     return <ErrorScreen />;
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    handleSearch(data.searchText as string);
+  };
+
   return (
     <div className="PostList__wrapper" data-testid={testId} {...props}>
       <div className="PostList__container">
         <h1>List of posts</h1>
-        <div className="PostList__input-wrapper">
+        <form onSubmit={handleSubmit} className="PostList__input-wrapper">
           <SearchSelect
-            onChangeValue={(val) => {
-              setSearchText(val);
-            }}
             placeholder="Search posts by user name..."
+            inputProps={{ name: "searchText" }}
           >
             {users.map((user) => (
               <Option key={user.id} value={user.name}>
@@ -47,10 +51,10 @@ function PostList({ testId, ...props }: PostListProps) {
               </Option>
             ))}
           </SearchSelect>
-          <Button variant="primary" onClick={handleSearch} icon="search">
+          <Button variant="primary" type="submit" icon="search">
             Search
           </Button>
-        </div>
+        </form>
         <ListComponent
           data={posts}
           loadingData={loadingPosts && currentOffset === 0}

@@ -1,4 +1,10 @@
-import React, { FC, HTMLAttributes, useEffect, useState } from "react";
+import React, {
+  FC,
+  HTMLAttributes,
+  InputHTMLAttributes,
+  useEffect,
+  useState,
+} from "react";
 import { ClickOutsideListener } from "..";
 import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
@@ -19,10 +25,11 @@ const Option: FC<OptionProps> = ({ value, children, onClick }) => {
 
 interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   defaultValue?: string;
-  onChangeValue: (value: string) => void;
+  onChangeValue?: (value: string) => void;
   children: React.ReactNode;
   placeholder?: string;
   onItemSelected?: (value: string) => void;
+  inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
 
 const SearchSelect: FC<SelectProps> = ({
@@ -30,6 +37,7 @@ const SearchSelect: FC<SelectProps> = ({
   onChangeValue,
   placeholder = "",
   onItemSelected,
+  inputProps,
   ...props
 }) => {
   const [searchText, setSearchText] = useState("");
@@ -94,6 +102,7 @@ const SearchSelect: FC<SelectProps> = ({
           }}
           onFocus={handleInputFocus}
           placeholder={placeholder}
+          {...inputProps}
         />
         <div
           className="Select-input__clear"

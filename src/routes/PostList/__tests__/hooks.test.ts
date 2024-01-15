@@ -29,7 +29,6 @@ describe("usePosts", () => {
     expect(result.current.users).toEqual([testUser]);
     expect(result.current.loading).toEqual(false);
     expect(result.current.loadMoreDisabled).toEqual(false);
-    expect(result.current.searchText).toEqual("");
     expect(useFetchData).toHaveBeenCalledWith("/users");
     expect(useFetchData).toHaveBeenCalledWith("/posts?_limit=50&_start=0");
   });
@@ -51,18 +50,13 @@ describe("usePosts", () => {
     );
     const { result } = renderHook(() => usePosts());
     await act(async () => {
-      result.current.setSearchText(newTestUser.name);
-    });
-
-    await act(async () => {
-      result.current.handleSearch();
+      result.current.handleSearch(newTestUser.name);
     });
 
     await waitFor(() => {
       expect(useFetchData).toHaveBeenCalledWith(
         `/posts?_limit=50&_start=0&userId=${newTestUser.id}`
       );
-      expect(result.current.searchText).toEqual(newTestUser.name);
       expect(result.current.users).toEqual([testUser, newTestUser]);
     });
 
