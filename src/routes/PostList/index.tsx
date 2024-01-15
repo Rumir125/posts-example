@@ -1,11 +1,11 @@
 import { HTMLAttributes } from "react";
 import CommentList from "../../components/CommentList";
+import ErrorScreen from "../../components/ErrorScreen";
 import PostCard from "../../components/PostCard";
 import withLogger from "../../shared/hoc/withLogger";
 import { Button, ListComponent, Option, SearchSelect } from "../../ui-library";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
-import ErrorScreen from "../../components/ErrorScreen";
 
 interface PostListProps extends HTMLAttributes<HTMLDivElement> {
   testId?: string;
@@ -47,7 +47,7 @@ function PostList({ testId, ...props }: PostListProps) {
               </Option>
             ))}
           </SearchSelect>
-          <Button variant="primary" onClick={handleSearch}>
+          <Button variant="primary" onClick={handleSearch} icon="search">
             Search
           </Button>
         </div>

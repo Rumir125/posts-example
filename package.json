@@ -40,7 +40,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(css|less|sass|scss)$": "<rootDir>/src/__mocks__/styleMock.ts"
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/__mocks__/styleMock.ts",
+      "\\.svg": "<rootDir>/src/__mocks__/svgTransform.ts"
     },
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [

@@ -49,7 +49,11 @@ function PostCard({
           </p>
         </div>
         <div className="PostCard__button-container">
-          <Button onClick={handleClickViewComments} variant="secondary">
+          <Button
+            onClick={handleClickViewComments}
+            variant="secondary"
+            icon="edit"
+          >
             Comments
           </Button>
         </div>

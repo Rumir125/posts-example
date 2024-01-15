@@ -1,22 +1,41 @@
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, SVGProps } from "react";
 import withLogger from "../../shared/hoc/withLogger";
+import { ICONS, IconType } from "../icons";
 import "./style.css";
 
 // TODO: Add a new variant for the button
-// TODO: Add an icon prop to the button
-
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: "primary" | "secondary";
+  icon?: IconType;
+  iconProps?: SVGProps<SVGSVGElement>;
 }
 
-function Button({ children, variant, ...props }: ButtonProps) {
-  const buttonVariant =
-    variant === "primary"
-      ? "PostsExample__button--primary"
-      : "PostsExample__button--secondary";
+function Button({ children, variant, icon, iconProps, ...props }: ButtonProps) {
+  const Icon = icon
+    ? ICONS({
+        height: "20px",
+        width: "20px",
+        className: "Button_Icon",
+        fill: variant === "primary" ? "#fff" : "#3f80ff",
+        ...iconProps,
+      })[icon]
+    : null;
+
   return (
-    <button className={`PostsExample__button ${buttonVariant}`} {...props}>
-      {children}
+    <button
+      className={`PostsExample__button  PostsExample__button--${variant}`}
+      {...props}
+    >
+      <div
+        style={{
+          display: "flex",
+          columnGap: "8px",
+          alignItems: "center",
+        }}
+      >
+        {icon && Icon}
+        {children}
+      </div>
     </button>
   );
 }
