@@ -64,12 +64,12 @@ const usePosts = () => {
       users?.find((user: UserData) => user.id === post.userId)?.name || "",
   }));
 
-  const handleSearch = (textInput:string) => {
+  const handleSearch = (textInput: string) => {
     if (textInput === activeSearch) return;
     const newIds = filterUserIdsBySearch(users || [], textInput);
     const oldIds = filterUserIdsBySearch(users || [], activeSearch);
     if (JSON.stringify(oldIds) === JSON.stringify(newIds)) return;
-    if(newIds.length === 0) return;
+    if (newIds.length === 0) return;
 
     setCurrentOffset(0);
     setActiveSearch(textInput);
@@ -79,6 +79,13 @@ const usePosts = () => {
   const loadMoreDisabled =
     currentOffset * POSTS_FETCH_LIMIT >= loadedPosts.length;
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+    handleSearch(data.searchText as string);
+  };
+
   return {
     posts: updatedPosts || [],
     currentPostId,
@@ -87,10 +94,10 @@ const usePosts = () => {
     users: users || [],
     setCurrentOffset,
     setLoadedPosts,
-    handleSearch,
     currentOffset,
     loadMoreDisabled,
     error: postsError || usersError,
+    handleSubmit,
   };
 };
 

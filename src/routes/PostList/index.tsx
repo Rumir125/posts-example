@@ -19,10 +19,10 @@ function PostList({ testId, ...props }: PostListProps) {
     loading: loadingPosts,
     users,
     setCurrentOffset,
-    handleSearch,
     loadMoreDisabled,
     currentOffset,
     error,
+    handleSubmit,
   } = usePosts();
 
   // TODO: Maybe create a hoc to handle error states
@@ -30,18 +30,15 @@ function PostList({ testId, ...props }: PostListProps) {
     return <ErrorScreen />;
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    handleSearch(data.searchText as string);
-  };
-
   return (
     <div className="PostList__wrapper" data-testid={testId} {...props}>
       <div className="PostList__container">
         <h1>List of posts</h1>
-        <form onSubmit={handleSubmit} className="PostList__input-wrapper">
+        <form
+          onSubmit={handleSubmit}
+          className="PostList__input-wrapper"
+          autoComplete="off"
+        >
           <SearchSelect
             placeholder="Search posts by user name..."
             inputProps={{ name: "searchText" }}

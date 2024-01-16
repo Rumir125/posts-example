@@ -48,9 +48,19 @@ describe("usePosts", () => {
             error: null,
           }
     );
+
+    const formElement = document.createElement("form");
+    const inputElement = document.createElement("input");
+    inputElement.name = "searchText";
+    inputElement.value = newTestUser.name;
+    formElement.appendChild(inputElement);
+
     const { result } = renderHook(() => usePosts());
     await act(async () => {
-      result.current.handleSearch(newTestUser.name);
+      result.current.handleSubmit({
+        preventDefault: jest.fn(),
+        currentTarget: formElement,
+      } as unknown as React.FormEvent<HTMLFormElement>);
     });
 
     await waitFor(() => {
