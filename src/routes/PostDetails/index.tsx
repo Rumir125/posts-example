@@ -18,7 +18,7 @@ function PostDetails({ testId }: { testId?: string }) {
   if (error) {
     return <ErrorScreen />;
   }
-  if (!post || loading) {
+  if (!post || !user || loading) {
     return <LoadingScreen />;
   }
 
