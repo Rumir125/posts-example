@@ -1,11 +1,12 @@
+import React from "react";
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
-import PostDetails from "../PostDetails";
-import PostList from "../PostList";
+const PostDetails = React.lazy(() => import("../PostDetails"));
+const PostList = React.lazy(() => import("../PostList"));
 
 export default function AppRoutes() {
   return (

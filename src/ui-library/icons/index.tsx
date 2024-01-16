@@ -4,11 +4,11 @@ import SearchIcon from "./SearchIcon";
 
 export type IconType = "edit" | "search";
 
-type ICON_OBJECT = {
+type IconObject = {
   [key: string]: JSX.Element;
 };
 
-export const ICONS = (props: SVGProps<SVGSVGElement>): ICON_OBJECT => ({
+export const ICONS = (props: SVGProps<SVGSVGElement>): IconObject => ({
   edit: <CommentIcon {...props} />,
   search: <SearchIcon {...props} />,
 });
