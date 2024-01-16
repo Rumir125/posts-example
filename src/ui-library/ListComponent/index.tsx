@@ -1,5 +1,6 @@
 import { HTMLAttributes } from "react";
 import LoadingScreen from "../../components/LoadingScreen";
+import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
 interface ListComponentProps extends HTMLAttributes<HTMLDivElement> {
@@ -43,5 +44,4 @@ function ListComponent({
     </div>
   );
 }
-// Had to remove withLogger because it was causing a warning on build for circular dependency
-export default ListComponent;
+export default withLogger(ListComponent);

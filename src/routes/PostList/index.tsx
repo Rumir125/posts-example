@@ -3,7 +3,8 @@ import CommentList from "../../components/CommentList";
 import ErrorScreen from "../../components/ErrorScreen";
 import PostCard from "../../components/PostCard";
 import withLogger from "../../shared/hoc/withLogger";
-import { Button, ListComponent, Option, SearchSelect } from "../../ui-library";
+import { Button, Option, SearchSelect } from "../../ui-library";
+import ListComponent from "../../ui-library/ListComponent";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
 
