@@ -28,8 +28,6 @@ function PostCard({
     setCurrentPostId
   );
 
-  console.log("render post card", postId);
-
   return (
     <div
       className={`PostCard__wrapper ${
