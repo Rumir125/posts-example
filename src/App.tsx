@@ -8,6 +8,7 @@ import ErrorBoundary from "./shared/hoc/ErrorBoundary";
 // TODO: Add localization support
 // TODO: Add dark mode support
 // TODO: Add prettier config file
+// TODO: Lazy load components
 
 function App() {
   return (

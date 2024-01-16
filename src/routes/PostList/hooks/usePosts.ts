@@ -58,12 +58,6 @@ const usePosts = () => {
     }
   }, [currentOffset, POSTS_FETCH_LIMIT, posts]);
 
-  const updatedPosts = loadedPosts?.map((post: PostData) => ({
-    ...post,
-    userName:
-      users?.find((user: UserData) => user.id === post.userId)?.name || "",
-  }));
-
   const handleSearch = (textInput: string) => {
     if (textInput === activeSearch) return;
     const newIds = filterUserIdsBySearch(users || [], textInput);
@@ -76,15 +70,25 @@ const usePosts = () => {
     setLoadedPosts([]);
   };
 
-  const loadMoreDisabled =
-    currentOffset * POSTS_FETCH_LIMIT >= loadedPosts.length;
-
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData.entries());
     handleSearch(data.searchText as string);
   };
+
+  const loadMoreDisabled =
+    currentOffset * POSTS_FETCH_LIMIT >= loadedPosts.length;
+
+  const updatedPosts = useMemo(
+    () =>
+      loadedPosts?.map((post: PostData) => ({
+        ...post,
+        userName:
+          users?.find((user: UserData) => user.id === post.userId)?.name || "",
+      })),
+    [loadedPosts, users]
+  );
 
   return {
     posts: updatedPosts || [],

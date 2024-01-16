@@ -49,9 +49,10 @@ const SearchSelect: FC<SelectProps> = ({
   useEffect(() => {
     const childOptions = React.Children.map(children, (child) => {
       if (
-        React.isValidElement(child) &&
-        typeof child?.props?.children === "string" &&
-        typeof child?.props?.value === "string"
+        React.isValidElement(child)
+        // &&
+        // typeof child?.props?.children === "string" &&
+        // typeof child?.props?.value === "string"
       ) {
         return {
           value: (child.props as OptionProps).value,
