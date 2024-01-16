@@ -34,7 +34,7 @@ const usePosts = () => {
       activeSearch
     );
     return `&${filteredUserIds.map((id) => `userId=${id}`).join("&")}`;
-  }, [activeSearch, users]);
+  }, [activeSearch, filterUserIdsBySearch, users]);
 
   const {
     data: posts,
@@ -56,6 +56,7 @@ const usePosts = () => {
         posts?.filter((post) => !postIds.includes(post.id)) || [];
       setLoadedPosts((prevPosts) => [...prevPosts, ...newPosts]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentOffset, POSTS_FETCH_LIMIT, posts]);
 
   const handleSearch = (textInput: string) => {

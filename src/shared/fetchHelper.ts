@@ -60,6 +60,7 @@ export function useFetchData<T>(
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [relativeUrl]);
 
   const invalidateCache = (url: string) => {
