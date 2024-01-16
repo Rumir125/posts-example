@@ -62,7 +62,9 @@ function PostList({ testId, ...props }: PostListProps) {
           noDataMessage="No posts found"
           renderItem={(postData) => (
             <PostCard
-              postData={postData}
+              title={postData.title}
+              userName={postData.userName}
+              postId={postData.id}
               setCurrentPostId={setCurrentPostId}
               selected={postData.id === currentPostId}
               testId={`${testId}-post-card-${postData.id}`}

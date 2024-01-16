@@ -24,7 +24,9 @@ describe("App", function () {
       render(
         <PostCard
           propsMessage="Hello component"
-          postData={testPost}
+          title={testPost.title}
+          userName={testPost.userName}
+          postId={testPost.id}
           setCurrentPostId={() => {}}
           testId={testId}
         />
