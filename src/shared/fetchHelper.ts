@@ -8,6 +8,9 @@ type FetchOptions = {
   useGlobalCache: boolean;
 };
 
+// TODO: Add support for POST, PUT, DELETE
+// TODO: Add support for custom keys
+
 export function useFetchData<T>(
   relativeUrl: string,
   options: FetchOptions = { useGlobalCache: true }

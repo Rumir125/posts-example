@@ -14,10 +14,10 @@ function PostDetails({ testId }: { testId?: string }) {
 
   const { post, user, loading, error } = usePostDetails(Number(id));
 
+  // TODO: Maybe create a hoc to handle loading and error states
   if (error) {
     return <ErrorScreen />;
   }
-
   if (!post || loading) {
     return <LoadingScreen />;
   }

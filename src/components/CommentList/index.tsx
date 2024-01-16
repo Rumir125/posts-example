@@ -13,6 +13,7 @@ interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
 function CommentList({ postId, testId, ...props }: CommentListProps) {
   const { comments, loadingComments, error } = useCommentList(postId);
 
+  // TODO: Maybe create a hoc to handle error states
   if (error) {
     return <ErrorScreen message={error.message} />;
   }

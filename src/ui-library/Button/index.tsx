@@ -11,7 +11,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 function Button({ children, variant, icon, iconProps, ...props }: ButtonProps) {
-  const Icon = useMemo(
+  const IconComponent = useMemo(
     () =>
       icon
         ? ICONS({
@@ -31,7 +31,7 @@ function Button({ children, variant, icon, iconProps, ...props }: ButtonProps) {
       {...props}
     >
       <div className="PostsExample__button_container">
-        {icon && Icon}
+        {IconComponent}
         {children}
       </div>
     </button>

@@ -25,6 +25,7 @@ function PostList({ testId, ...props }: PostListProps) {
     error,
   } = usePosts();
 
+  // TODO: Maybe create a hoc to handle error states
   if (error) {
     return <ErrorScreen />;
   }
