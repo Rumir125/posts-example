@@ -1,9 +1,9 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, memo } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import { ListComponent } from "../../ui-library";
+import ErrorScreen from "../ErrorScreen";
 import useCommentList from "./hooks/useCommentList";
 import "./style.css";
-import ErrorScreen from "../ErrorScreen";
 
 interface CommentListProps extends HTMLAttributes<HTMLDivElement> {
   postId: number | null;
@@ -19,7 +19,7 @@ function CommentList({ postId, testId, ...props }: CommentListProps) {
   }
 
   return (
-    <div className="CommentList__wrapper" data-testid={testId} {...props}>
+    <aside className="CommentList__wrapper" data-testid={testId} {...props}>
       <h2>Comments</h2>
       <div className="CommentList__container">
         <ListComponent
@@ -47,8 +47,8 @@ function CommentList({ postId, testId, ...props }: CommentListProps) {
           }
         />
       </div>
-    </div>
+    </aside>
   );
 }
 
-export default withLogger(CommentList);
+export default memo(withLogger(CommentList));

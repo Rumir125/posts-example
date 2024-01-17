@@ -12,15 +12,6 @@ describe("usePostCard", () => {
   beforeAll(() => {
     (useNavigate as jest.Mock).mockReturnValue(navigate);
   });
-  it("should check if navigate is called", async () => {
-    const { result } = renderHook(() => usePostCard(testPostId, () => {}));
-
-    act(() => {
-      result.current.handleClickDetails();
-    });
-    expect(navigate).toHaveBeenCalled();
-    expect(navigate).toHaveBeenCalledWith(`/post/${testPostId}`);
-  });
 
   it("should check setCurrentId is called", async () => {
     const setCurrentPostIdMock = jest.fn();
@@ -28,14 +19,17 @@ describe("usePostCard", () => {
       usePostCard(testPostId, setCurrentPostIdMock)
     );
     const stopPropagationMock = jest.fn();
+    const preventDefaultMock = jest.fn();
 
     act(() => {
       result.current.handleClickViewComments({
         stopPropagation: () => stopPropagationMock(),
-      }  as React.MouseEvent<HTMLButtonElement, MouseEvent>);
+        preventDefault: () => preventDefaultMock(),
+      } as React.MouseEvent<HTMLButtonElement, MouseEvent>);
     });
 
     expect(stopPropagationMock).toHaveBeenCalled();
+    expect(preventDefaultMock).toHaveBeenCalled();
     expect(setCurrentPostIdMock).toHaveBeenCalledWith(testPostId);
   });
 });

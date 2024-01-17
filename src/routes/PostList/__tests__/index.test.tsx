@@ -19,6 +19,12 @@ jest.mock("../../../components/PostCard/hooks/usePostCard", () => {
   };
 });
 jest.mock("../../../components/CommentList/hooks/useCommentList");
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  NavLink: ({ to, children }: { to: string; children: React.ReactNode }) => (
+    <a href={to}>{children}</a>
+  ),
+}));
 const usePostsMock = usePosts as jest.Mock;
 const useCommentListMock = useCommentList as jest.Mock;
 

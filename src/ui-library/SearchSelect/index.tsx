@@ -31,6 +31,7 @@ interface SelectProps extends HTMLAttributes<HTMLDivElement> {
   onItemSelected?: (value: string) => void;
   inputProps?: InputHTMLAttributes<HTMLInputElement>;
 }
+// TODO: debounce search
 
 const SearchSelect: FC<SelectProps> = ({
   children,

@@ -32,28 +32,30 @@ function PostList({ testId, ...props }: PostListProps) {
   }
 
   return (
-    <div className="PostList__wrapper" data-testid={testId} {...props}>
+    <main className="PostList__wrapper" data-testid={testId} {...props}>
       <div className="PostList__container">
-        <h1>List of posts</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="PostList__input-wrapper"
-          autoComplete="off"
-        >
-          <SearchSelect
-            placeholder="Search posts by user name..."
-            inputProps={{ name: "searchText" }}
+        <header>
+          <h1>List of posts</h1>
+          <form
+            onSubmit={handleSubmit}
+            className="PostList__input-wrapper"
+            autoComplete="off"
           >
-            {users.map((user) => (
-              <Option key={user.id} value={user.name}>
-                {user.name}
-              </Option>
-            ))}
-          </SearchSelect>
-          <Button variant="primary" type="submit" icon="search">
-            Search
-          </Button>
-        </form>
+            <SearchSelect
+              placeholder="Search posts by user name..."
+              inputProps={{ name: "searchText" }}
+            >
+              {users.map((user) => (
+                <Option key={user.id} value={user.name}>
+                  {user.name}
+                </Option>
+              ))}
+            </SearchSelect>
+            <Button variant="primary" type="submit" icon="search">
+              Search
+            </Button>
+          </form>
+        </header>
         <ListComponent
           data={posts}
           loadingData={loadingPosts && currentOffset === 0}
@@ -83,7 +85,7 @@ function PostList({ testId, ...props }: PostListProps) {
       <div className="PostList__comments-wrapper">
         <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />
       </div>
-    </div>
+    </main>
   );
 }
 
