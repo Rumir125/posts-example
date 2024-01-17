@@ -35,6 +35,7 @@ describe("App", function () {
           postId={testPost.id}
           setCurrentPostId={() => {}}
           testId={testId}
+          setModalOpen={jest.fn()}
         />
       );
     });

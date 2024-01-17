@@ -11,12 +11,18 @@ describe("usePostCard", () => {
 
   beforeAll(() => {
     (useNavigate as jest.Mock).mockReturnValue(navigate);
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      value: jest.fn().mockImplementation(() => ({
+        matches: false,
+      })),
+    });
   });
 
   it("should check setCurrentId is called", async () => {
     const setCurrentPostIdMock = jest.fn();
     const { result } = renderHook(() =>
-      usePostCard(testPostId, setCurrentPostIdMock)
+      usePostCard(testPostId, setCurrentPostIdMock, jest.fn())
     );
     const stopPropagationMock = jest.fn();
     const preventDefaultMock = jest.fn();

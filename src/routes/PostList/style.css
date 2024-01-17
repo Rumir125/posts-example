@@ -49,3 +49,9 @@
   padding: 12px 0px;
   border-top: 1px solid #d9d9d9;
 }
+
+@media (max-width: 768px) {
+  .PostList__comments-wrapper {
+    display: none;
+  }
+}

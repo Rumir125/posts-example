@@ -11,6 +11,7 @@ interface PostCardProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
   userName: string;
   setCurrentPostId: Dispatch<SetStateAction<number | null>>;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
   selected?: boolean;
   testId?: string;
 }
@@ -22,9 +23,14 @@ function PostCard({
   postId,
   title,
   userName,
+  setModalOpen,
   ...props
 }: PostCardProps) {
-  const { handleClickViewComments } = usePostCard(postId, setCurrentPostId);
+  const { handleClickViewComments } = usePostCard(
+    postId,
+    setCurrentPostId,
+    setModalOpen
+  );
 
   return (
     <NavLink to={`/post/${postId}`} style={{ color: "#000" }}>

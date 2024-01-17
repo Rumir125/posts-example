@@ -1,9 +1,9 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useState } from "react";
 import CommentList from "../../components/CommentList";
 import ErrorScreen from "../../components/ErrorScreen";
 import PostCard from "../../components/PostCard";
 import withLogger from "../../shared/hoc/withLogger";
-import { Button, Option, SearchSelect } from "../../ui-library";
+import { Button, Modal, Option, SearchSelect } from "../../ui-library";
 import ListComponent from "../../ui-library/ListComponent";
 import usePosts from "./hooks/usePosts";
 import "./style.css";
@@ -25,6 +25,8 @@ function PostList({ testId, ...props }: PostListProps) {
     error,
     handleSubmit,
   } = usePosts();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   // TODO: Maybe create a hoc to handle error states
   if (error) {
@@ -69,6 +71,7 @@ function PostList({ testId, ...props }: PostListProps) {
               setCurrentPostId={setCurrentPostId}
               selected={postData.id === currentPostId}
               testId={`${testId}-post-card-${postData.id}`}
+              setModalOpen={setModalOpen}
             />
           )}
         />
@@ -85,6 +88,29 @@ function PostList({ testId, ...props }: PostListProps) {
       <aside className="PostList__comments-wrapper">
         <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />
       </aside>
+
+      <Modal open={modalOpen}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
+          <Button
+            variant="secondary"
+            onClick={() => setModalOpen(false)}
+            style={{ alignSelf: "baseline" }}
+          >
+            Close
+          </Button>
+          <h3>{posts.find((post) => post.id === currentPostId)?.title}</h3>
+          <CommentList
+            postId={currentPostId}
+            testId={`${testId}-comment-list-modal`}
+          />
+        </div>
+      </Modal>
     </main>
   );
 }
