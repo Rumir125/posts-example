@@ -19,7 +19,7 @@ function CommentList({ postId, testId, ...props }: CommentListProps) {
   }
 
   return (
-    <aside className="CommentList__wrapper" data-testid={testId} {...props}>
+    <div className="CommentList__wrapper" data-testid={testId} {...props}>
       <h2>Comments</h2>
       <div className="CommentList__container">
         <ListComponent
@@ -27,11 +27,11 @@ function CommentList({ postId, testId, ...props }: CommentListProps) {
           data={comments || []}
           loadingData={loadingComments}
           renderItem={(comment) => (
-            <div className="CommentList__item-container">
+            <article className="CommentList__item-container">
               <h4 className="CommentList__name">{comment.name}</h4>
               <p className="CommentList__email">{comment.email}</p>
               <p className="CommentList__body">{comment.body}</p>
-            </div>
+            </article>
           )}
           noDataComponent={
             <div
@@ -47,7 +47,7 @@ function CommentList({ postId, testId, ...props }: CommentListProps) {
           }
         />
       </div>
-    </aside>
+    </div>
   );
 }
 

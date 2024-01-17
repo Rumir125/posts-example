@@ -33,7 +33,7 @@ function PostList({ testId, ...props }: PostListProps) {
 
   return (
     <main className="PostList__wrapper" data-testid={testId} {...props}>
-      <div className="PostList__container">
+      <section className="PostList__container">
         <header>
           <h1>List of posts</h1>
           <form
@@ -81,10 +81,10 @@ function PostList({ testId, ...props }: PostListProps) {
             Load more
           </Button>
         </div>
-      </div>
-      <div className="PostList__comments-wrapper">
+      </section>
+      <aside className="PostList__comments-wrapper">
         <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />
-      </div>
+      </aside>
     </main>
   );
 }

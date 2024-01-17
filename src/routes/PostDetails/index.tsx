@@ -23,9 +23,9 @@ function PostDetails({ testId }: { testId?: string }) {
   }
 
   return (
-    <div className="PostDetails__wrapper" data-testid={testId}>
+    <main className="PostDetails__wrapper" data-testid={testId}>
       <div className="PostDetails__container">
-        <div className="PostDetails__content-container">
+        <section className="PostDetails__content-container">
           <div className="PostDetails__button-container">
             <Button
               onClick={() => navigate("/posts", { replace: true })}
@@ -40,12 +40,12 @@ function PostDetails({ testId }: { testId?: string }) {
             <span className="PostDetails__user-name"> {user?.name} </span>
           </p>
           <p>{post.body}</p>
-        </div>
-        <div className="PostDetails__comments-container">
+        </section>
+        <aside className="PostDetails__comments-container">
           <CommentList postId={post.id} testId={`${testId}-comment-list`} />
-        </div>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }
 
