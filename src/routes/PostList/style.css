@@ -55,3 +55,9 @@
     display: none;
   }
 }
+
+.PostList__Modal-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

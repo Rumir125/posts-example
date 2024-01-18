@@ -2,18 +2,21 @@ import { HTMLAttributes } from "react";
 import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
-interface ModalProps extends HTMLAttributes<HTMLDialogElement> {
+interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
   children: React.ReactNode;
+  popupProps?: HTMLAttributes<HTMLDialogElement>;
 }
 
-function Modal({ open, children, ...props }: ModalProps) {
+function Modal({ open, children, popupProps, ...props }: ModalProps) {
   if (!open) return null;
 
   return (
-    <dialog className="Modal__wrapper" {...props}>
-      {children}
-    </dialog>
+    <div className="Modal__background" {...props}>
+      <dialog className="modal Modal__wrapper" {...popupProps}>
+        {children}
+      </dialog>
+    </div>
   );
 }
 

@@ -85,18 +85,16 @@ function PostList({ testId, ...props }: PostListProps) {
           </Button>
         </div>
       </section>
-      <aside className="PostList__comments-wrapper">
-        <CommentList postId={currentPostId} testId={`${testId}-comment-list`} />
-      </aside>
-
+      {!modalOpen && (
+        <aside className="PostList__comments-wrapper">
+          <CommentList
+            postId={currentPostId}
+            testId={`${testId}-comment-list`}
+          />
+        </aside>
+      )}
       <Modal open={modalOpen}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-          }}
-        >
+        <div className="PostList__Modal-body">
           <Button
             variant="secondary"
             onClick={() => setModalOpen(false)}
