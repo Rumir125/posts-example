@@ -2,10 +2,10 @@
   display: flex;
   width: 500px;
   height: 500px;
-  z-index: 10;
   background-color: white;
   flex-direction: column;
   box-sizing: border-box;
+  padding: 0px;
 }
 
 .Modal__background {

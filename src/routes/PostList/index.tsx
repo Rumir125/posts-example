@@ -93,8 +93,8 @@ function PostList({ testId, ...props }: PostListProps) {
           />
         </aside>
       )}
-      <Modal open={modalOpen}>
-        <div className="PostList__Modal-body">
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
+        <div className="PostList__Modal-body" style={{ padding: "16px" }}>
           <Button
             variant="secondary"
             onClick={() => setModalOpen(false)}
