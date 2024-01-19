@@ -1,5 +1,4 @@
 import { ButtonHTMLAttributes, SVGProps, useMemo } from "react";
-import withLogger from "../../shared/hoc/withLogger";
 import { ICONS, IconType } from "../icons";
 import "./style.css";
 
@@ -38,4 +37,4 @@ function Button({ children, variant, icon, iconProps, ...props }: ButtonProps) {
   );
 }
 
-export default withLogger(Button);
+export default Button;
