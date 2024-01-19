@@ -82,7 +82,5 @@ used in the future as a separate UI component library
 ### Storybook
 
 ```
-cs src/ui-library
-npm install
 npm run storybook
 ```
