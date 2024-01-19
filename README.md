@@ -78,3 +78,11 @@ Every UI component has a logger attached to it and will log `${propsMessage}${co
 
 In src/ui-library you can use generic components which could be useful for other projects and could be
 used in the future as a separate UI component library
+
+### Storybook
+
+```
+cs src/ui-library
+npm install
+npm run storybook
+```
