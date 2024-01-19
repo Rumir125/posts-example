@@ -4,7 +4,6 @@ import "./style.css";
 
 interface ModalProps extends HTMLAttributes<HTMLDivElement> {
   open: boolean;
-  children: React.ReactNode;
   popupProps?: HTMLAttributes<HTMLDialogElement>;
   onClose?: () => void;
 }

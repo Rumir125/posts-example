@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { Button } from "../src/ui-library";
 import Modal from "../src/ui-library/Modal";
 
@@ -24,37 +25,58 @@ type Story = StoryObj<typeof Modal>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const BasicModal: Story = {
   args: {
-    children: (
-      <div
-        style={{
-          display: "flex",
-          height: "100%",
-          padding: "16px",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          boxSizing: "border-box",
-          rowGap: "8px",
-        }}
-      >
-        <div>
-          <h3 style={{ textAlign: "center" }}>Modal title</h3>
-        </div>
+    popupProps: { style: { borderRadius: "10px" } },
+  },
+  render: (args) => {
+    const [modalOpen, setModalOpen] = React.useState(true);
+
+    React.useEffect(() => {
+      if (modalOpen) {
+        return;
+      }
+      setTimeout(() => {
+        setModalOpen(true);
+      }, 1000);
+    }, [modalOpen]);
+
+    return (
+      <Modal {...args} open={modalOpen} onClose={() => setModalOpen(false)}>
         <div
           style={{
-            flex: 3,
-            border: "1px solid grey",
-            borderRadius: "4px",
-            padding: "8px",
+            width: "100%",
+            height: "100%",
+            borderRadius: "10px",
+            display: "flex",
+            flexDirection: "column",
+            padding: "16px",
+            boxSizing: "border-box",
+            rowGap: "8px",
           }}
         >
-          <p>Body</p>
+          <div>
+            <h2 style={{ textAlign: "center" }}>Title</h2>
+          </div>
+          <div
+            style={{
+              flex: 1,
+              border: "1px solid grey",
+              borderRadius: "8px",
+              padding: "12px",
+              color: "grey",
+            }}
+          >
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Laboriosam officia vel fugit doloremque! Sunt eaque ad veniam
+              optio quibusdam sapiente assumenda quis enim quidem eligendi
+              accusamus nemo iste, consequatur corporis.
+            </p>
+          </div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button variant="primary">Apply</Button>
+          </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="primary">Do something</Button>
-        </div>
-      </div>
-    ),
-    open: true,
-    popupProps: { style: { borderRadius: "10px" } },
+      </Modal>
+    );
   },
 };

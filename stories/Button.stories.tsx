@@ -27,22 +27,22 @@ export const Primary: Story = {
   },
 };
 
-export const Secondary = {
+export const Secondary: Story = {
   args: {
     variant: "secondary",
     children: "Click secondary",
   },
 };
 
-export const DisabledPrimary = {
+export const DisabledPrimary: Story = {
   args: {
-    size: "primary",
+    variant: "primary",
     disabled: true,
     children: "Click primary",
   },
 };
 
-export const WithIcon = {
+export const WithIcon: Story = {
   args: {
     variant: "primary",
     children: "Search",
@@ -50,7 +50,7 @@ export const WithIcon = {
   },
 };
 
-export const WithIconSecondary = {
+export const WithIconSecondary: Story = {
   args: {
     variant: "secondary",
     children: "Edit",
