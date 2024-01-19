@@ -1,6 +1,5 @@
 import { HTMLAttributes } from "react";
 import { ClickOutsideListener } from "..";
-import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
 interface ModalProps extends HTMLAttributes<HTMLDivElement> {
@@ -29,4 +28,4 @@ function Modal({ open, children, popupProps, onClose, ...props }: ModalProps) {
   );
 }
 
-export default withLogger(Modal);
+export default Modal;
