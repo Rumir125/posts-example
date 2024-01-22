@@ -6,7 +6,6 @@ import React, {
   useState,
 } from "react";
 import { ClickOutsideListener } from "..";
-import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
 interface OptionProps {
@@ -137,7 +136,4 @@ const SearchSelect: FC<SelectProps> = ({
   );
 };
 
-const LoggedOption = withLogger(Option);
-const LoggedSearchSelect = withLogger(SearchSelect);
-
-export { LoggedOption as Option, LoggedSearchSelect as SearchSelect };
+export { Option, SearchSelect };

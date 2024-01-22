@@ -1,6 +1,5 @@
 import { HTMLAttributes } from "react";
 import LoadingScreen from "../../components/LoadingScreen";
-import withLogger from "../../shared/hoc/withLogger";
 import "./style.css";
 
 interface ListComponentProps extends HTMLAttributes<HTMLDivElement> {
@@ -44,4 +43,4 @@ function ListComponent({
     </div>
   );
 }
-export default withLogger(ListComponent);
+export default ListComponent;
