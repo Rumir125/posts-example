@@ -34,11 +34,6 @@
   overflow: auto;
 }
 
-.PostList__list-empty {
-  display: flex;
-  justify-content: center;
-}
-
 .PostList__comments-wrapper {
   flex: 2;
   max-height: 100vh;

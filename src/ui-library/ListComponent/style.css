@@ -7,3 +7,8 @@
   list-style-type: none;
   padding-inline-start: 0px;
 }
+
+.ListComponent__list-empty {
+  display: flex;
+  justify-content: center;
+}

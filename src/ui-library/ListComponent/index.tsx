@@ -36,7 +36,7 @@ function ListComponent({
         </ul>
       ) : (
         noDataComponent || (
-          <div className="PostList__list-empty">
+          <div className="ListComponent__list-empty">
             <p>{noDataMessage}</p>
           </div>
         )
